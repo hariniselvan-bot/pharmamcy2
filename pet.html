@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Healthy Living Pharmacy</title>
+  <link rel="stylesheet" href="pet.CSS">
+</head>
+<body>
+
+<!-- ✅ HEADER START -->
+<header class="header">
+  <a href="index.html" class="logo">
+    <img src="logo.webp" alt="STACKLY Logo">
+    <span><strong>𝑺𝑻𝑨𝑪𝑲𝑳𝒀</strong></span>
+  </a>
+
+  <nav class="navbar" id="navbar">
+    <ul>
+      <li class="dropdown">
+        <div class="dropdown-toggle">
+          <a href="home2.html">Home 2</a>
+          <span class="arrow">▼</span>
+        </div>
+        <ul class="dropdown-menu">
+          <li><a href="index.html">Home 1</a></li>
+        </ul>
+      </li>
+      <li><a href="pet.html">Pet Pills</a></li>
+      <li><a href="drugs.html">Drugs & Supplements</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="login.html">Login</a></li>
+    </ul>
+  </nav>
+
+  <a href="docsavai.html" class="find-doctor-btn">Find a Doctor</a>
+
+  <div class="menu-icon" id="menu-icon">&#9776;</div>
+</header>
+<!-- ✅ HEADER END -->
+
+<style>
+/* ✅ BASIC HEADER STYLE */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #eaf6f4;
+  padding: 10px 30px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+/* ✅ Add spacing below header so body doesn't touch it */
+body {
+  margin: 0;
+  padding-top: 90px; /* space between header and body */
+}
+
+/* ✅ LOGO */
+.logo {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+.logo img {
+  width: 60px;
+  height: 60px;
+  border-radius: 8px;
+  margin-right: 2px;
+}
+.logo span {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #18055391;
+}
+
+/* ✅ NAVBAR */
+.navbar ul {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin: 0;
+  padding: 0;
+}
+.navbar a {
+  text-decoration: none;
+  color: #003b3b;
+  font-weight: 500;
+}
+.navbar a:hover {
+  color: #009999;
+}
+
+/* ✅ DROPDOWN MENU */
+.dropdown {
+  position: relative;
+}
+.dropdown-toggle {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+}
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 35px;
+  left: 0;
+  background: #e9f7f6;
+  border-radius: 8px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+  list-style: none;
+  padding: 8px 0;
+  min-width: 120px;
+}
+.dropdown-menu li a {
+  display: block;
+  padding: 8px 15px;
+  color: #003b3b;
+}
+.dropdown-menu li a:hover {
+  background-color: #c9eeea;
+}
+
+/* ✅ FIND BUTTON */
+.find-doctor-btn {
+  background-color: #009999;
+  color: white !important;
+  padding: 7px 15px;
+  border-radius: 25px;
+  text-decoration: none;
+  white-space: nowrap;
+  font-weight: 500;
+}
+.find-doctor-btn:hover {
+  background-color: #007777;
+}
+
+/* ✅ HAMBURGER */
+.menu-icon {
+  font-size: 26px;
+  cursor: pointer;
+  display: none;
+  color: #003b3b;
+}
+
+/* ✅ RESPONSIVE MENU */
+@media (max-width: 900px) {
+  .navbar {
+    display: none;
+    flex-direction: column;
+    background-color: #009999;
+    position: absolute;
+    top: 70px;
+    right: 20px;
+    padding: 15px;
+    border-radius: 10px;
+    width: 220px;
+  }
+  .navbar.active {
+    display: flex;
+  }
+  .navbar ul {
+    flex-direction: column;
+    gap: 0;
+  }
+  .navbar a {
+    color: white;
+    padding: 10px;
+    border-radius: 8px;
+    display: block;
+  }
+  .navbar a:hover {
+    background-color: #007777;
+  }
+  .find-doctor-btn {
+    display: none;
+  }
+  .menu-icon {
+    display: block;
+  }
+  .dropdown-menu {
+    position: static;
+    background: #008c8c;
+    box-shadow: none;
+    border-radius: 6px;
+    padding: 5px 0;
+  }
+  .dropdown-menu li a {
+    color: white;
+    padding-left: 25px;
+  }
+}
+</style>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const menuIcon = document.getElementById("menu-icon");
+  const navbar = document.getElementById("navbar");
+  const arrow = document.querySelector(".arrow");
+  const dropdownMenu = document.querySelector(".dropdown-menu");
+
+  // ✅ Toggle mobile navbar
+  menuIcon.addEventListener("click", () => {
+    navbar.classList.toggle("active");
+  });
+
+  // ✅ Toggle Home1 dropdown only when clicking arrow
+  arrow.addEventListener("click", (e) => {
+    e.stopPropagation();
+    e.preventDefault();
+    dropdownMenu.style.display =
+      dropdownMenu.style.display === "block" ? "none" : "block";
+  });
+});
+</script>
+
+  <section class="product-section">
+    <div class="product-card">
+      <img src="SyCal.webp" alt="Pet Medicine 1">
+      <h3>SyCal Pet Calcium Supplement</h3>
+      <p>For Dogs & Cats | 200ml</p>
+      <span class="price">₹231</span>
+     <a href="404.html" class="add-btn">Add to Cart</a>
+
+    </div>
+
+    </div>
+
+    <div class="product-card">
+      <img src="Vetoquinol (1).webp" alt="Pet Medicine 2">
+      <h3>Vetoquinol Calcium Tablets</h3>
+      <p>For Strong Bones | 50pcs</p>
+      <span class="price">₹312</span>
+     <a href="404.html" class="add-btn">Add to Cart</a>
+
+    </div>
+
+    <div class="product-card">
+      <img src="BioPet.webp" alt="Pet Medicine 3">
+      <h3>BioPet Dog Calcium</h3>
+      <p>Supports Bone Growth | 100ml</p>
+      <span class="price">₹223</span>
+     <a href="404.html" class="add-btn">Add to Cart</a>
+    </div>
+
+    <div class="product-card">
+      <img src="Natural (1).webp" alt="Pet Medicine 4">
+      <h3>Natural Pet Osteopex</h3>
+      <p>Vitamin & Mineral Syrup | 200ml</p>
+      <span class="price">₹342</span>
+     <a href="404.html" class="add-btn">Add to Cart</a>
+    </div>
+
+    <div class="product-card">
+      <img src="Drools.webp" alt="Pet Medicine 5">
+      <h3>Drools Calcium Tablet</h3>
+      <p>Bone Support for Dogs | 50pcs</p>
+      <span class="price">₹211</span>
+     <a href="404.html" class="add-btn">Add to Cart</a>
+    </div>
+
+    <div class="product-card">
+      <img src="Exotic.webp" alt="Pet Medicine 6">
+      <h3>Exotic Pet Syrup</h3>
+      <p>Energy & Growth Booster | 150ml</p>
+      <span class="price">₹450</span>
+     <a href="404.html" class="add-btn">Add to Cart</a>
+    </div>
+
+    <div class="product-card">
+      <img src="PetRich.webp" alt="Pet Medicine 7">
+      <h3>PetRich Calcium Tablets</h3>
+      <p>Joint Strength Formula</p>
+      <span class="price">₹213</span>
+     <a href="404.html" class="add-btn">Add to Cart</a>
+    </div>
+
+    <div class="product-card">
+      <img src="Canis.webp" alt="Pet Medicine 8">
+      <h3>Canis Cal Pet Syrup</h3>
+      <p>Calcium & Vitamin Mix | 250ml</p>
+      <span class="price">₹194</span>
+     <a href="404.html" class="add-btn">Add to Cart</a>
+    </div>
+
+    <div class="product-card">
+      <img src="VetCal.webp" alt="Pet Medicine 9">
+      <h3>VetCal Calcium Supplement</h3>
+      <p>Stronger Bones | 100ml</p>
+      <span class="price">₹247</span>
+     <a href="404.html" class="add-btn">Add to Cart</a>
+    </div>
+
+    <div class="product-card">
+      <img src="Regain.webp" alt="Pet Medicine 10">
+      <h3>Regain Calcium Tablets</h3>
+      <p>For Dogs & Cats | 50pcs</p>
+      <span class="price">₹404</span>
+     <a href="404.html" class="add-btn">Add to Cart</a>
+    </div>
+
+    <div class="product-card">
+      <img src="Intact.webp" alt="Pet Medicine 11">
+      <h3>Intact Pet Calcium Syrup</h3>
+      <p>Improves Bone Density | 200ml</p>
+      <span class="price">₹315</span>
+     <a href="404.html" class="add-btn">Add to Cart</a>
+    </div>
+
+    <div class="product-card">
+      <img src="Bone.webp" alt="Pet Medicine 12">
+      <h3>Bone Builder Tonic</h3>
+      <p>Essential Minerals | 250ml</p>
+      <span class="price">₹493</span>
+     <a href="404.html" class="add-btn">Add to Cart</a>
+    </div>
+  </section>
+  <script>
+  // Add product to cart and show popup
+  function addToCart(name, price) {
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    cart.push({ name, price });
+    localStorage.setItem("cart", JSON.stringify(cart));
+
+    // Popup message
+    const popup = document.createElement("div");
+    popup.textContent = `${name} added to cart! 🛒`;
+    popup.style.position = "fixed";
+    popup.style.bottom = "30px";
+    popup.style.right = "30px";
+    popup.style.background = "#0ea5a0";
+    popup.style.color = "#fff";
+    popup.style.padding = "12px 20px";
+    popup.style.borderRadius = "12px";
+    popup.style.fontFamily = "Poppins, sans-serif";
+    popup.style.boxShadow = "0 4px 12px rgba(0,0,0,0.2)";
+    popup.style.animation = "fadeUp 2s ease forwards";
+    document.body.appendChild(popup);
+
+    // Remove popup after a few seconds
+    setTimeout(() => popup.remove(), 1800);
+  }
+
+  // Animation for popup
+  const style = document.createElement("style");
+  style.innerHTML = `
+    @keyframes fadeUp {
+      0% {opacity: 0; transform: translateY(20px);}
+      50% {opacity: 1; transform: translateY(0);}
+      100% {opacity: 0; transform: translateY(-10px);}
+    }
+  `;
+  document.head.appendChild(style);
+
+  // Add event listeners for Add to Cart buttons
+  document.addEventListener("DOMContentLoaded", () => {
+    const buttons = document.querySelectorAll(".product-card button");
+    buttons.forEach(button => {
+      const product = button.parentElement;
+      const name = product.querySelector("h3").textContent;
+      const price = parseInt(product.querySelector(".price").textContent.replace("₹", ""));
+      button.addEventListener("click", () => addToCart(name, price));
+    });
+  });
+</script>
+
+ <footer class="footer">
+  <div class="footer-container">
+    <div class="footer-box logo-box">
+      <img src="logo.webp" alt="Stackly Logo" class="footer-logo" />
+      <h3>STACKLY</h3>
+    </div>
+
+    <div class="footer-box links-box">
+      <h4>Check Us</h4>
+      <ul>
+        <li><a href="index.html">Home 1</a></li>
+        <li><a href="home2.html">Home 2</a></li>
+        <li><a href="contact1.html">Contact</a></li>
+        <li><a href="login.html">Login</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-box contact-box">
+      <h4>Get In Touch</h4>
+      <p>MMR COMPLEX, Salem, Tamil Nadu 636008</p>
+      <p>+91 70107 92745</p>
+      <p>info@thestackly.com</p>
+
+      <div class="social-icons">
+        <a href="404.html"><i class="fa-brands fa-facebook-f"></i></a>
+        <a href="404.html"><i class="fa-brands fa-twitter"></i></a>
+        <a href="404.html"><i class="fa-brands fa-linkedin-in"></i></a>
+        <a href="404.html"><i class="fa-brands fa-instagram"></i></a>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-map">
+    <iframe
+      src="https://www.google.com/maps?q=Salem,+Tamil+Nadu&output=embed"
+      width="100%" height="250" style="border:0; border-radius:10px;"
+      allowfullscreen="" loading="lazy">
+    </iframe>
+  </div>
+
+  <p class="footer-bottom">© 2025 Stackly | All Rights Reserved</p>
+</footer>
+
+<!-- ✅ CSS -->
+<style>
+  .footer {
+    background-color: #0c0016;
+    color: white;
+    padding: 50px 60px 20px;
+  }
+
+  .footer-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 60px;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .footer-box {
+    flex: 1;
+    min-width: 280px;
+  }
+
+  /* ✅ LOGO alignment fix */
+  .logo-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .footer-logo {
+    width: 70px;
+    height: 70px;
+    margin-bottom: 10px;
+  }
+
+  /* ✅ Titles and spacing */
+  .footer-box h3,
+  .footer-box h4 {
+    margin-bottom: 12px;
+    color: #fff;
+    text-align: center;
+  }
+
+  .links-box ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    text-align: center;
+  }
+
+  .links-box ul li {
+    margin: 6px 0;
+  }
+
+  .links-box ul li a {
+    color: #ddd;
+    text-decoration: none;
+    transition: 0.3s;
+  }
+
+  .links-box ul li a:hover {
+    color: #00cccc;
+  }
+
+  .contact-box {
+    text-align: center;
+  }
+
+  .contact-box p {
+    margin: 5px 0;
+    color: #ccc;
+  }
+
+  .social-icons {
+    margin-top: 12px;
+  }
+
+  .social-icons a {
+    color: white;
+    margin: 0 8px;
+    font-size: 20px;
+    text-decoration: none;
+    transition: 0.3s;
+  }
+
+  .social-icons a:hover {
+    color: #00cccc;
+    transform: scale(1.1);
+  }
+
+  .footer-map {
+    margin-top: 30px;
+  }
+
+  .footer-bottom {
+    text-align: center;
+    margin-top: 25px;
+    font-size: 0.9rem;
+    color: #aaa;
+  }
+
+  /* ✅ Responsive fix for perfect mobile alignment */
+  @media (max-width: 768px) {
+    .footer-container {
+      flex-direction: column;
+      align-items: center;
+      gap: 30px;
+    }
+
+    .footer-box {
+      width: 100%;
+      max-width: 350px;
+    }
+
+    .links-box ul,
+    .contact-box,
+    .logo-box {
+      text-align: center;
+    }
+
+    .social-icons {
+      text-align: center;
+    }
+  }
+</style>
+
+<!-- Font Awesome -->
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+/>
