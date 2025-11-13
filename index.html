@@ -3,20 +3,11 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Stackly HealthPortal — Trusted Medical News</title>
+  <title>Stackly HealthPortal  — Trusted Medical News</title>
   <link rel="stylesheet" href="style.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
-  
 
-  <!-- Floating decorative shapes -->
-  <div class="float-wrap" aria-hidden="true">
-    <span class="molecule m1"></span>
-    <span class="molecule m2"></span>
-    <span class="molecule m3"></span>
-  </div>
-<!-- ✅ HEADER START -->
 <header class="header">
   <a href="index.html" class="logo">
     <img src="logo.webp" alt="STACKLY Logo">
@@ -26,7 +17,7 @@
   <nav class="navbar" id="navbar">
     <ul>
       <li class="dropdown">
-        <a href="#" class="dropdown-toggle">Home 1 ▾</a>
+        <a href="index.html" class="dropdown-toggle">Home 1 ▾</a>
         <ul class="dropdown-menu">
           <li><a href="home2.html">Home 2</a></li>
         </ul>
@@ -217,17 +208,30 @@ document.addEventListener("DOMContentLoaded", function () {
     navbar.classList.toggle("active");
   });
 
-  // Dropdown click for mobile
+  // Fix: make "Home 1" clickable while still toggling submenu
   dropdownToggles.forEach(toggle => {
     toggle.addEventListener("click", (e) => {
-      e.preventDefault();
       const dropdownMenu = toggle.nextElementSibling;
-      dropdownMenu.style.display =
-        dropdownMenu.style.display === "block" ? "none" : "block";
+
+      if (window.innerWidth <= 900) {
+        // Separate the arrow part from the text
+        const arrowClicked = e.offsetX > toggle.offsetWidth - 20;
+
+        if (arrowClicked) {
+          // prevent navigation and toggle submenu only if arrow area is clicked
+          e.preventDefault();
+          dropdownMenu.style.display =
+            dropdownMenu.style.display === "block" ? "none" : "block";
+        } 
+        // else → let normal link navigation happen (index.html will open)
+      }
     });
   });
 });
 </script>
+
+
+  
 
   <!-- HERO -->
    <section class="living-healthy">
