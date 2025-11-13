@@ -196,7 +196,6 @@ header .logo span {
   }
 }
 </style>
-
 <script>
 document.addEventListener("DOMContentLoaded", function () {
   const menuIcon = document.getElementById("menu-icon");
@@ -208,17 +207,29 @@ document.addEventListener("DOMContentLoaded", function () {
     navbar.classList.toggle("active");
   });
 
-  // Dropdown click for mobile
+  // Fix: make "Home 1" clickable while still toggling submenu
   dropdownToggles.forEach(toggle => {
     toggle.addEventListener("click", (e) => {
-      e.preventDefault();
       const dropdownMenu = toggle.nextElementSibling;
-      dropdownMenu.style.display =
-        dropdownMenu.style.display === "block" ? "none" : "block";
+
+      if (window.innerWidth <= 900) {
+        // Separate the arrow part from the text
+        const arrowClicked = e.offsetX > toggle.offsetWidth - 20;
+
+        if (arrowClicked) {
+          // prevent navigation and toggle submenu only if arrow area is clicked
+          e.preventDefault();
+          dropdownMenu.style.display =
+            dropdownMenu.style.display === "block" ? "none" : "block";
+        } 
+        // else → let normal link navigation happen (index.html will open)
+      }
     });
   });
 });
 </script>
+
+
 
 
   <section class="conditions">
