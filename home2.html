@@ -252,7 +252,7 @@ document.addEventListener("DOMContentLoaded", function () {
       window.location.href = "404.html";
     } 
     // ✅ If search input matches one of the categories
-    else if (["medicine", "", ""].includes(searchText)) {
+    else if (["medicine", "fitness", "diagnostics"].includes(searchText)) {
       window.location.href = searchText + ".html";
     } 
     // ❌ Otherwise show an error popup
@@ -407,6 +407,8 @@ document.addEventListener("DOMContentLoaded", function () {
  </body>
 
 
+
+
 <footer class="footer">
   <div class="footer-container">
     <div class="footer-box logo-box">
@@ -455,30 +457,29 @@ document.addEventListener("DOMContentLoaded", function () {
   .footer {
     background-color: #0c0016;
     color: white;
-    padding: 50px 60px 20px;
+    padding: 50px 20px 20px;
   }
 
   .footer-container {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: flex-start;
-    gap: 60px;
     flex-wrap: wrap;
-    max-width: 1200px;
+    gap: 50px;
+    max-width: 1100px;
     margin: 0 auto;
+    text-align: center;
   }
 
   .footer-box {
     flex: 1;
-    min-width: 280px;
+    min-width: 250px;
   }
 
-  /* ✅ LOGO alignment fix */
   .logo-box {
     display: flex;
     flex-direction: column;
     align-items: center;
-    text-align: center;
   }
 
   .footer-logo {
@@ -487,19 +488,15 @@ document.addEventListener("DOMContentLoaded", function () {
     margin-bottom: 10px;
   }
 
-  /* ✅ Titles and spacing */
   .footer-box h3,
   .footer-box h4 {
-    margin-bottom: 12px;
     color: #fff;
-    text-align: center;
+    margin-bottom: 10px;
   }
 
   .links-box ul {
     list-style: none;
     padding: 0;
-    margin: 0;
-    text-align: center;
   }
 
   .links-box ul li {
@@ -514,10 +511,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
   .links-box ul li a:hover {
     color: #00cccc;
-  }
-
-  .contact-box {
-    text-align: center;
   }
 
   .contact-box p {
@@ -544,6 +537,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
   .footer-map {
     margin-top: 30px;
+    display: flex;
+    justify-content: center;
+  }
+
+  .footer-map iframe {
+    max-width: 500px;
+    width: 100%;
+    border-radius: 10px;
   }
 
   .footer-bottom {
@@ -551,14 +552,18 @@ document.addEventListener("DOMContentLoaded", function () {
     margin-top: 25px;
     font-size: 0.9rem;
     color: #aaa;
+    border-top: 1px solid rgba(255,255,255,0.2);
+    padding-top: 15px;
   }
 
-  /* ✅ Responsive fix for perfect mobile alignment */
+  /* ✅ Perfect Mobile Alignment */
   @media (max-width: 768px) {
     .footer-container {
       flex-direction: column;
       align-items: center;
-      gap: 30px;
+      justify-content: center;
+      text-align: center;
+      gap: 35px;
     }
 
     .footer-box {
@@ -566,14 +571,8 @@ document.addEventListener("DOMContentLoaded", function () {
       max-width: 350px;
     }
 
-    .links-box  ul,
-    .contact-box,
-    .logo-box {
-      text-align: center;
-    }
-
-    .social-icons {
-      text-align: center;
+    .footer-map iframe {
+      max-width: 90%;
     }
   }
 </style>
