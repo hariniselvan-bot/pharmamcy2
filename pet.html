@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Healthy Living Pharmacy</title>
-  <link rel="stylesheet" href="pet.css">
+  <link rel="stylesheet" href="pet.CSS">
 </head>
 <body>
 
@@ -197,6 +197,76 @@ body {
     padding-left: 25px;
   }
 }
+/* ✅ Product Section Layout */
+.product-section {
+  background-color: #f4fffd;
+  padding: 40px 0;
+}
+
+.product-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; /* centers last row */
+  gap: 25px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* ✅ Product Card */
+.product-card {
+  background: #a8e6df;
+  border-radius: 15px;
+  padding: 20px;
+  width: 240px;
+  text-align: center;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+  transition: 0.3s;
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
+}
+
+.product-card img {
+  width: 100%;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+.product-card h3 {
+  font-size: 1rem;
+  color: #004b4b;
+  margin-bottom: 5px;
+}
+
+.product-card p {
+  font-size: 0.9rem;
+  color: #2e5555;
+  margin-bottom: 10px;
+}
+
+.product-card .price {
+  display: block;
+  font-weight: bold;
+  color: #007777;
+  margin-bottom: 8px;
+}
+
+.add-btn {
+  display: inline-block;
+  background: #ff8a3d;
+  color: white;
+  padding: 8px 15px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.add-btn:hover {
+  background: #e6772f;
+}
+
 </style>
 
 <script>
