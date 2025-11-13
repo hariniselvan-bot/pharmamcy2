@@ -1,11 +1,13 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Healthy Living Pharmacy</title>
-  <link rel="stylesheet" href="home2.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Stackly HealthPortal  — Trusted Medical News</title>
+  <link rel="stylesheet" href="home2.css" />
 </head>
+<body>
+
 <header class="header">
   <a href="index.html" class="logo">
     <img src="logo.webp" alt="STACKLY Logo">
@@ -15,17 +17,15 @@
   <nav class="navbar" id="navbar">
     <ul>
       <li class="dropdown">
-        <div class="dropdown-toggle">
-          <a href="home2.html">Home 2</a>
-          <span class="arrow">▼</span>
-        </div>
+        <a href="index.html" class="dropdown-toggle">Home 1 ▾</a>
         <ul class="dropdown-menu">
-          <li><a href="index.html">Home 1</a></li>
+          <li><a href="home2.html">Home 2</a></li>
         </ul>
       </li>
-      <li><a href="pet.html">Pet Pills</a></li>
-      <li><a href="drugs.html">Drugs & Supplements</a></li>
-      <li><a href="contact.html">Contact</a></li>
+      <li><a href="docsavai.html">Available Doctors</a></li>
+      <li><a href="healthyliving.html">Healthy Living</a></li>
+      <li><a href="condition.html">Condition</a></li>
+      <li><a href="contact1.html">Contact</a></li>
       <li><a href="login.html">Login</a></li>
     </ul>
   </nav>
@@ -49,13 +49,6 @@
   left: 0;
   width: 100%;
   z-index: 1000;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-}
-
-/* ✅ Add spacing below header so body doesn't touch it */
-body {
-  margin: 0;
-  padding-top: 90px; /* space between header and body */
 }
 
 /* ✅ LOGO */
@@ -64,16 +57,19 @@ body {
   align-items: center;
   text-decoration: none;
 }
-.logo img {
+header .logo img {
   width: 60px;
   height: 60px;
   border-radius: 8px;
   margin-right: 2px;
+  vertical-align: middle;
 }
-.logo span {
+header .logo span {
   font-size: 1.5rem;
   font-weight: bold;
   color: #18055391;
+  position: relative;
+  top: 1px;
 }
 
 /* ✅ NAVBAR */
@@ -98,12 +94,6 @@ body {
 .dropdown {
   position: relative;
 }
-.dropdown-toggle {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  cursor: pointer;
-}
 .dropdown-menu {
   display: none;
   position: absolute;
@@ -116,6 +106,9 @@ body {
   padding: 8px 0;
   min-width: 120px;
 }
+.dropdown-menu li {
+  width: 100%;
+}
 .dropdown-menu li a {
   display: block;
   padding: 8px 15px;
@@ -123,6 +116,22 @@ body {
 }
 .dropdown-menu li a:hover {
   background-color: #c9eeea;
+}
+@media (max-width: 900px) {
+  .hero {
+    margin-top: 80px; /* adjust this value to your header height */
+  }
+}
+@media (max-width: 900px) {
+  .hero {
+    margin-top: 80px; /* adjust this value to your header height */
+  }
+}
+
+
+/* ✅ SHOW ON HOVER (DESKTOP) */
+.dropdown:hover .dropdown-menu {
+  display: block;
 }
 
 /* ✅ FIND BUTTON */
@@ -145,6 +154,7 @@ body {
   cursor: pointer;
   display: none;
   color: #003b3b;
+  margin-left: 10px;
 }
 
 /* ✅ RESPONSIVE MENU */
@@ -182,6 +192,8 @@ body {
   .menu-icon {
     display: block;
   }
+
+  /* ✅ Mobile dropdown open on click */
   .dropdown-menu {
     position: static;
     background: #008c8c;
@@ -200,23 +212,37 @@ body {
 document.addEventListener("DOMContentLoaded", function () {
   const menuIcon = document.getElementById("menu-icon");
   const navbar = document.getElementById("navbar");
-  const arrow = document.querySelector(".arrow");
-  const dropdownMenu = document.querySelector(".dropdown-menu");
+  const dropdownToggles = document.querySelectorAll(".dropdown-toggle");
 
-  // ✅ Toggle mobile navbar
+  // Toggle mobile navbar
   menuIcon.addEventListener("click", () => {
     navbar.classList.toggle("active");
   });
 
-  // ✅ Toggle Home1 dropdown only when clicking arrow
-  arrow.addEventListener("click", (e) => {
-    e.stopPropagation();
-    e.preventDefault();
-    dropdownMenu.style.display =
-      dropdownMenu.style.display === "block" ? "none" : "block";
+  // Fix: make "Home 1" clickable while still toggling submenu
+  dropdownToggles.forEach(toggle => {
+    toggle.addEventListener("click", (e) => {
+      const dropdownMenu = toggle.nextElementSibling;
+
+      if (window.innerWidth <= 900) {
+        // Separate the arrow part from the text
+        const arrowClicked = e.offsetX > toggle.offsetWidth - 20;
+
+        if (arrowClicked) {
+          // prevent navigation and toggle submenu only if arrow area is clicked
+          e.preventDefault();
+          dropdownMenu.style.display =
+            dropdownMenu.style.display === "block" ? "none" : "block";
+        } 
+        // else → let normal link navigation happen (index.html will open)
+      }
+    });
   });
 });
 </script>
+
+
+
 
 
   <!-- HERO -->
