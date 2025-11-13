@@ -753,3 +753,69 @@ footer {
     background: transparent;
   }
 }
+.search-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #fff;
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  width: 100%;
+  max-width: 500px;     /* controls max width on desktop */
+  margin: 10px auto;    /* centers it nicely */
+  box-sizing: border-box;
+}
+
+.search-container select,
+.search-container input,
+.search-container button {
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 15px;
+}
+
+.search-container select {
+  flex: 1;
+  min-width: 100px;
+}
+
+.search-container input {
+  flex: 2;
+}
+
+.search-container button {
+  flex: 1;
+  background-color: #009999;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.3s;
+  white-space: nowrap;
+}
+
+.search-container button:hover {
+  background-color: #007777;
+}
+
+/* ✅ Responsive fix for small screens */
+@media (max-width: 768px) {
+  .search-container {
+    flex-direction: column;
+    align-items: stretch;
+    width: 90%;
+  }
+
+  .search-container select,
+  .search-container input,
+  .search-container button {
+    width: 100%;
+    margin-bottom: 8px;
+  }
+
+  .search-container button {
+    margin-bottom: 0;
+  }
+}
