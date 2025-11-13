@@ -17,15 +17,17 @@
   <nav class="navbar" id="navbar">
     <ul>
       <li class="dropdown">
-        <a href="index.html" class="dropdown-toggle">Home 1 ▾</a>
+        <div class="dropdown-toggle">
+          <a href="home2.html">Home 2</a>
+          <span class="arrow">▼</span>
+        </div>
         <ul class="dropdown-menu">
-          <li><a href="home2.html">Home 2</a></li>
+          <li><a href="index.html">Home 1</a></li>
         </ul>
       </li>
-      <li><a href="docsavai.html">Available Doctors</a></li>
-      <li><a href="healthyliving.html">Healthy Living</a></li>
-      <li><a href="condition.html">Condition</a></li>
-      <li><a href="contact1.html">Contact</a></li>
+      <li><a href="pet.html">Pet Pills</a></li>
+      <li><a href="drugs.html">Drugs & Supplements</a></li>
+      <li><a href="contact.html">Contact</a></li>
       <li><a href="login.html">Login</a></li>
     </ul>
   </nav>
@@ -127,6 +129,20 @@ header .logo span {
     margin-top: 80px; /* adjust this value to your header height */
   }
 }
+/* Make dropdown arrow black and add animation on toggle */
+.dropdown-toggle .arrow {
+  color: #000;                /* black arrow */
+  font-size: 0.7em;           /* smaller arrow */
+  margin-left: 4px;           /* a little space from the text */
+  transition: transform 0.3s ease;
+}
+
+/* Rotate arrow when dropdown is open (desktop hover or mobile active) */
+.dropdown:hover .arrow,
+.dropdown-menu.show ~ .arrow {
+  transform: rotate(180deg);
+}
+
 
 
 /* ✅ SHOW ON HOVER (DESKTOP) */
