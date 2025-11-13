@@ -1,14 +1,13 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Healthy Living Pharmacy</title>
-  <link rel="stylesheet" href="pet.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Stackly HealthPortal  — Trusted Medical News</title>
+  <link rel="stylesheet" href="home2.css" />
 </head>
 <body>
 
-<!-- ✅ HEADER START -->
 <header class="header">
   <a href="index.html" class="logo">
     <img src="logo.webp" alt="STACKLY Logo">
@@ -52,13 +51,6 @@
   left: 0;
   width: 100%;
   z-index: 1000;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-}
-
-/* ✅ Add spacing below header so body doesn't touch it */
-body {
-  margin: 0;
-  padding-top: 90px; /* space between header and body */
 }
 
 /* ✅ LOGO */
@@ -67,16 +59,19 @@ body {
   align-items: center;
   text-decoration: none;
 }
-.logo img {
+header .logo img {
   width: 60px;
   height: 60px;
   border-radius: 8px;
   margin-right: 2px;
+  vertical-align: middle;
 }
-.logo span {
+header .logo span {
   font-size: 1.5rem;
   font-weight: bold;
   color: #18055391;
+  position: relative;
+  top: 1px;
 }
 
 /* ✅ NAVBAR */
@@ -101,12 +96,6 @@ body {
 .dropdown {
   position: relative;
 }
-.dropdown-toggle {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  cursor: pointer;
-}
 .dropdown-menu {
   display: none;
   position: absolute;
@@ -119,6 +108,9 @@ body {
   padding: 8px 0;
   min-width: 120px;
 }
+.dropdown-menu li {
+  width: 100%;
+}
 .dropdown-menu li a {
   display: block;
   padding: 8px 15px;
@@ -126,6 +118,22 @@ body {
 }
 .dropdown-menu li a:hover {
   background-color: #c9eeea;
+}
+@media (max-width: 900px) {
+  .hero {
+    margin-top: 80px; /* adjust this value to your header height */
+  }
+}
+@media (max-width: 900px) {
+  .hero {
+    margin-top: 80px; /* adjust this value to your header height */
+  }
+}
+
+
+/* ✅ SHOW ON HOVER (DESKTOP) */
+.dropdown:hover .dropdown-menu {
+  display: block;
 }
 
 /* ✅ FIND BUTTON */
@@ -148,6 +156,7 @@ body {
   cursor: pointer;
   display: none;
   color: #003b3b;
+  margin-left: 10px;
 }
 
 /* ✅ RESPONSIVE MENU */
@@ -185,6 +194,8 @@ body {
   .menu-icon {
     display: block;
   }
+
+  /* ✅ Mobile dropdown open on click */
   .dropdown-menu {
     position: static;
     background: #008c8c;
@@ -197,76 +208,6 @@ body {
     padding-left: 25px;
   }
 }
-/* ✅ Product Section Layout */
-.product-section {
-  background-color: #f4fffd;
-  padding: 40px 0;
-}
-
-.product-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center; /* centers last row */
-  gap: 25px;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-/* ✅ Product Card */
-.product-card {
-  background: #a8e6df;
-  border-radius: 15px;
-  padding: 20px;
-  width: 240px;
-  text-align: center;
-  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
-  transition: 0.3s;
-}
-
-.product-card:hover {
-  transform: translateY(-5px);
-}
-
-.product-card img {
-  width: 100%;
-  border-radius: 10px;
-  margin-bottom: 10px;
-}
-
-.product-card h3 {
-  font-size: 1rem;
-  color: #004b4b;
-  margin-bottom: 5px;
-}
-
-.product-card p {
-  font-size: 0.9rem;
-  color: #2e5555;
-  margin-bottom: 10px;
-}
-
-.product-card .price {
-  display: block;
-  font-weight: bold;
-  color: #007777;
-  margin-bottom: 8px;
-}
-
-.add-btn {
-  display: inline-block;
-  background: #ff8a3d;
-  color: white;
-  padding: 8px 15px;
-  border-radius: 8px;
-  text-decoration: none;
-  font-weight: bold;
-  transition: 0.3s;
-}
-
-.add-btn:hover {
-  background: #e6772f;
-}
-
 </style>
 
 <script>
@@ -302,156 +243,200 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 </script>
 
-  <section class="product-section">
-  <div class="product-container">
-    <div class="product-card">
-      <img src="SyCal.webp" alt="Pet Medicine 1">
-      <h3>SyCal Pet Calcium Supplement</h3>
-      <p>For Dogs & Cats | 200ml</p>
-      <span class="price">₹231</span>
-      <a href="404.html" class="add-btn">Add to Cart</a>
-    </div>
 
-    <div class="product-card">
-      <img src="Vetoquinol (1).webp" alt="Pet Medicine 2">
-      <h3>Vetoquinol Calcium Tablets</h3>
-      <p>For Strong Bones | 50pcs</p>
-      <span class="price">₹312</span>
-      <a href="404.html" class="add-btn">Add to Cart</a>
-    </div>
 
-    <div class="product-card">
-      <img src="BioPet.webp" alt="Pet Medicine 3">
-      <h3>BioPet Dog Calcium</h3>
-      <p>Supports Bone Growth | 100ml</p>
-      <span class="price">₹223</span>
-      <a href="404.html" class="add-btn">Add to Cart</a>
-    </div>
 
-    <div class="product-card">
-      <img src="Natural (1).webp" alt="Pet Medicine 4">
-      <h3>Natural Pet Osteopex</h3>
-      <p>Vitamin & Mineral Syrup | 200ml</p>
-      <span class="price">₹342</span>
-      <a href="404.html" class="add-btn">Add to Cart</a>
-    </div>
 
-    <div class="product-card">
-      <img src="Drools.webp" alt="Pet Medicine 5">
-      <h3>Drools Calcium Tablet</h3>
-      <p>Bone Support for Dogs | 50pcs</p>
-      <span class="price">₹211</span>
-      <a href="404.html" class="add-btn">Add to Cart</a>
-    </div>
+  <!-- HERO -->
+  <section class="hero">
+    <img src="pharmacy.webp" alt="Pharmacy Banner" class="hero-img">
+    <div class="hero-content">
+      <h2>Healthy Tablets and Medicine</h2>
+      <p>Your trusted source for quality health and wellness products.</p>
+     <div class="search-container">
+  <select id="category">
+    <option value="">All Categories</option>
+    <option value="medicine">Medicine</option>
+    <option value="fitness">Fitness</option>
+    <option value="diagnostics">Diagnostics</option>
+  </select>
 
-    <div class="product-card">
-      <img src="Exotic.webp" alt="Pet Medicine 6">
-      <h3>Exotic Pet Syrup</h3>
-      <p>Energy & Growth Booster | 150ml</p>
-      <span class="price">₹450</span>
-      <a href="404.html" class="add-btn">Add to Cart</a>
-    </div>
+  <input type="text" id="search-input" placeholder="Search...">
 
-    <div class="product-card">
-      <img src="PetRich.webp" alt="Pet Medicine 7">
-      <h3>PetRich Calcium Tablets</h3>
-      <p>Joint Strength Formula</p>
-      <span class="price">₹213</span>
-      <a href="404.html" class="add-btn">Add to Cart</a>
-    </div>
+  <button id="search-btn">Search</button>
+</div>
 
-    <div class="product-card">
-      <img src="Canis.webp" alt="Pet Medicine 8">
-      <h3>Canis Cal Pet Syrup</h3>
-      <p>Calcium & Vitamin Mix | 250ml</p>
-      <span class="price">₹194</span>
-      <a href="404.html" class="add-btn">Add to Cart</a>
-    </div>
+<script>
+  document.getElementById("search-btn").addEventListener("click", function() {
+    const category = document.getElementById("category").value.toLowerCase();
+    const searchText = document.getElementById("search-input").value.trim().toLowerCase();
 
-    <div class="product-card">
-      <img src="VetCal.webp" alt="Pet Medicine 9">
-      <h3>VetCal Calcium Supplement</h3>
-      <p>Stronger Bones | 100ml</p>
-      <span class="price">₹247</span>
-      <a href="404.html" class="add-btn">Add to Cart</a>
-    </div>
-
-    <div class="product-card">
-      <img src="Regain.webp" alt="Pet Medicine 10">
-      <h3>Regain Calcium Tablets</h3>
-      <p>For Dogs & Cats | 50pcs</p>
-      <span class="price">₹404</span>
-      <a href="404.html" class="add-btn">Add to Cart</a>
-    </div>
-
-    <div class="product-card">
-      <img src="Intact.webp" alt="Pet Medicine 11">
-      <h3>Intact Pet Calcium Syrup</h3>
-      <p>Improves Bone Density | 200ml</p>
-      <span class="price">₹315</span>
-      <a href="404.html" class="add-btn">Add to Cart</a>
-    </div>
-
-    <div class="product-card">
-      <img src="Bone.webp" alt="Pet Medicine 12">
-      <h3>Bone Builder Tonic</h3>
-      <p>Essential Minerals | 250ml</p>
-      <span class="price">₹493</span>
-      <a href="404.html" class="add-btn">Add to Cart</a>
-    </div>
-  </div>
-</section>
-
-  <script>
-  // Add product to cart and show popup
-  function addToCart(name, price) {
-    let cart = JSON.parse(localStorage.getItem("cart")) || [];
-    cart.push({ name, price });
-    localStorage.setItem("cart", JSON.stringify(cart));
-
-    // Popup message
-    const popup = document.createElement("div");
-    popup.textContent = `${name} added to cart! 🛒`;
-    popup.style.position = "fixed";
-    popup.style.bottom = "30px";
-    popup.style.right = "30px";
-    popup.style.background = "#0ea5a0";
-    popup.style.color = "#fff";
-    popup.style.padding = "12px 20px";
-    popup.style.borderRadius = "12px";
-    popup.style.fontFamily = "Poppins, sans-serif";
-    popup.style.boxShadow = "0 4px 12px rgba(0,0,0,0.2)";
-    popup.style.animation = "fadeUp 2s ease forwards";
-    document.body.appendChild(popup);
-
-    // Remove popup after a few seconds
-    setTimeout(() => popup.remove(), 1800);
-  }
-
-  // Animation for popup
-  const style = document.createElement("style");
-  style.innerHTML = `
-    @keyframes fadeUp {
-      0% {opacity: 0; transform: translateY(20px);}
-      50% {opacity: 1; transform: translateY(0);}
-      100% {opacity: 0; transform: translateY(-10px);}
+    // ✅ If dropdown selected, go to corresponding page
+    if (category === "medicine") {
+      window.location.href = "drugs.html";
+    } else if (category === "fitness") {
+      window.location.href = "404.html";
+    } else if (category === "diagnostics") {
+      window.location.href = "404.html";
+    } 
+    // ✅ If search input matches one of the categories
+    else if (["medicine", "fitness", "diagnostics"].includes(searchText)) {
+      window.location.href = searchText + ".html";
+    } 
+    // ❌ Otherwise show an error popup
+    else {
+      alert("No results found. Please select a valid category.");
     }
-  `;
-  document.head.appendChild(style);
-
-  // Add event listeners for Add to Cart buttons
-  document.addEventListener("DOMContentLoaded", () => {
-    const buttons = document.querySelectorAll(".product-card button");
-    buttons.forEach(button => {
-      const product = button.parentElement;
-      const name = product.querySelector("h3").textContent;
-      const price = parseInt(product.querySelector(".price").textContent.replace("₹", ""));
-      button.addEventListener("click", () => addToCart(name, price));
-    });
   });
 </script>
 
- 
+<style>
+.search-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #fff;
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  width: fit-content;
+}
+
+.search-container select,
+.search-container input {
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 15px;
+}
+
+.search-container button {
+  background-color: #009999;
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.search-container button:hover {
+  background-color: #007777;
+}
+</style>
+
+
+        
+      </div>
+    </div>
+  </section>
+
+  <!-- CATEGORY INFO -->
+  <section class="info-section">
+    <div class="container info-grid">
+      <div class="info-box">
+        <img src="medicine.webp" alt="Medicine" />
+        <h3>💊 Medicine</h3>
+        <p>Get all your medications in one place.</p>
+      </div>
+      <div class="info-box">
+        <img src="wellness.webp" alt="Wellness" />
+        <h3>🌿 Wellness</h3>
+        <p>Natural and organic supplements for healthy living.</p>
+      </div>
+      <div class="info-box">
+        <img src="Diagnostic.webp" alt="Diagnostic" />
+        <h3>🧪 Diagnostic</h3>
+        <p>Tools and kits for monitoring your health.</p>
+      </div>
+      <div class="info-box">
+        <img src="Health-Corner.webp" alt="Health Corner" />
+        <h3>❤️ Health Corner</h3>
+        <p>Expert health tips and wellness advice.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROMOTIONAL BANNERS -->
+  <section class="promo-section">
+    <div class="container promo-grid">
+      <div class="promo-box blue">
+        <img src="Medication.webp" alt="Medication" />
+        <h4>Medication at One Place</h4>
+        <p>Best deals on essential medicines.</p>
+      </div>
+      <div class="promo-box pink">
+        <img src="Naturally Good.webp" alt="Naturally Good" />
+        <h4>Naturally Good</h4>
+        <p>Save up to 25% on organic health products.</p>
+      </div>
+      <div class="promo-box green">
+        <img src="Medlife.webp" alt="Medlife" />
+        <h4>Medlife Products</h4>
+        <p>Upto 30% off on top brands.</p>
+      </div>
+      <div class="promo-box yellow">
+        <img src="Popular Medicines.webp" alt="Popular Medicines" />
+        <h4>Popular Medicines</h4>
+        <p>Trusted by doctors and pharmacists.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- POPULAR CATEGORIES -->
+  <section class="categories">
+    <div class="container">
+      <h2>Popular Categories</h2>
+      <div class="category-grid">
+        <div class="cat"><img src="OTC Drugs.webp" alt="OTC Drugs"><p></p></div>
+        <div class="cat"><img src="Ayush.webp" alt="Ayush"><p></p></div>
+        <div class="cat"><img src="Covid Essentials.webp" alt="Covid Essentials"><p></p></div>
+        <div class="cat"><img src="Devices.webp" alt="Devices"><p></p></div>
+        <div class="cat"><img src="Diabetes (2).webp" alt="Diabetes"><p></p></div>
+        <div class="cat"><img src="eye.webp" alt="Eyewear"><p></p></div>
+        <div class="cat"><img src="fit.webp" alt="Fitness"><p></p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRODUCTS -->
+  <section class="products">
+    <div class="container">
+      <h2>Our Daily Products</h2>
+      <div class="product-grid">
+        <div class="product">
+          <img src="Waterpik WP-100 Dental Care.webp" alt="Product 1">
+          <h4>Waterpik WP-100 Dental Care</h4>
+          <p>82.00</p>
+          <a href="404.html" class="add">Add to Cart</a>
+        </div>
+        <div class="product">
+          <img src="Organik Salmon Collagen.webp" alt="Product 2">
+          <h4>Organik Salmon Collagen</h4>
+          <p>74.00</p>
+          <a href="404.html" class="add">Add to Cart</a>
+        </div>
+        <div class="product">
+          <img src="Dental Irigator.webp" alt="Product 3">
+          <h4>Dental Irigator</h4>
+          <p>165.45</p>
+          <a href="404.html" class="add">Add to Cart</a>
+        </div>
+        <div class="product">
+          <img src="Siro Lorastad SP.webp" alt="Product 4">
+          <h4>Siro Lorastad SP</h4>
+          <p>140.89</p>
+          <a href="404.html" class="add">Add to Cart</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+ </body>
+
+
+
+
 <footer class="footer">
   <div class="footer-container">
     <div class="footer-box logo-box">
