@@ -376,25 +376,6 @@ body::before {
   color: #007777;
   text-decoration: underline;
 }
-/* ✅ Forgot Password Link */
-.forgot-password {
-  text-align: right;
-  margin-top: 5px;
-  margin-bottom: 15px;
-}
-
-.forgot-password a {
-  color: #009999;
-  text-decoration: none;
-  font-size: 0.9rem;
-  transition: 0.3s;
-}
-
-.forgot-password a:hover {
-  color: #007777;
-  text-decoration: underline;
-}
-
 
 
 /* Google Button */
