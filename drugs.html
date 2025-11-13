@@ -1,13 +1,12 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Stackly HealthPortal  — Trusted Medical News</title>
-  <link rel="stylesheet" href="condition.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BMI Calculator</title>
+  <link rel="stylesheet" href="drugs.css">
 </head>
-<body>
-
+<!-- ✅ HEADER START -->
 <header class="header">
   <a href="index.html" class="logo">
     <img src="logo.webp" alt="STACKLY Logo">
@@ -17,15 +16,17 @@
   <nav class="navbar" id="navbar">
     <ul>
       <li class="dropdown">
-        <a href="index.html" class="dropdown-toggle">Home 1 ▾</a>
+        <div class="dropdown-toggle">
+          <a href="home2.html">Home 2</a>
+          <span class="arrow">▼</span>
+        </div>
         <ul class="dropdown-menu">
-          <li><a href="home2.html">Home 2</a></li>
+          <li><a href="index.html">Home 1</a></li>
         </ul>
       </li>
-      <li><a href="docsavai.html">Available Doctors</a></li>
-      <li><a href="healthyliving.html">Healthy Living</a></li>
-      <li><a href="condition.html">Condition</a></li>
-      <li><a href="contact1.html">Contact</a></li>
+      <li><a href="pet.html">Pet Pills</a></li>
+      <li><a href="drugs.html">Drugs & Supplements</a></li>
+      <li><a href="contact.html">Contact</a></li>
       <li><a href="login.html">Login</a></li>
     </ul>
   </nav>
@@ -49,6 +50,13 @@
   left: 0;
   width: 100%;
   z-index: 1000;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+/* ✅ Add spacing below header so body doesn't touch it */
+body {
+  margin: 0;
+  padding-top: 90px; /* space between header and body */
 }
 
 /* ✅ LOGO */
@@ -57,19 +65,16 @@
   align-items: center;
   text-decoration: none;
 }
-header .logo img {
+.logo img {
   width: 60px;
   height: 60px;
   border-radius: 8px;
   margin-right: 2px;
-  vertical-align: middle;
 }
-header .logo span {
+.logo span {
   font-size: 1.5rem;
   font-weight: bold;
   color: #18055391;
-  position: relative;
-  top: 1px;
 }
 
 /* ✅ NAVBAR */
@@ -94,6 +99,12 @@ header .logo span {
 .dropdown {
   position: relative;
 }
+.dropdown-toggle {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+}
 .dropdown-menu {
   display: none;
   position: absolute;
@@ -106,9 +117,6 @@ header .logo span {
   padding: 8px 0;
   min-width: 120px;
 }
-.dropdown-menu li {
-  width: 100%;
-}
 .dropdown-menu li a {
   display: block;
   padding: 8px 15px;
@@ -116,11 +124,6 @@ header .logo span {
 }
 .dropdown-menu li a:hover {
   background-color: #c9eeea;
-}
-
-/* ✅ SHOW ON HOVER (DESKTOP) */
-.dropdown:hover .dropdown-menu {
-  display: block;
 }
 
 /* ✅ FIND BUTTON */
@@ -143,7 +146,6 @@ header .logo span {
   cursor: pointer;
   display: none;
   color: #003b3b;
-  margin-left: 10px;
 }
 
 /* ✅ RESPONSIVE MENU */
@@ -181,8 +183,6 @@ header .logo span {
   .menu-icon {
     display: block;
   }
-
-  /* ✅ Mobile dropdown open on click */
   .dropdown-menu {
     position: static;
     background: #008c8c;
@@ -196,7 +196,216 @@ header .logo span {
   }
 }
 </style>
+
 <script>
+document.addEventListener("DOMContentLoaded", function () {
+  const menuIcon = document.getElementById("menu-icon");
+  const navbar = document.getElementById("navbar");
+  const arrow = document.querySelector(".arrow");
+  const dropdownMenu = document.querySelector(".dropdown-menu");
+
+  // ✅ Toggle mobile navbar
+  menuIcon.addEventListener("click", () => {
+    navbar.classList.toggle("active");
+  });
+
+  // ✅ Toggle Home1 dropdown only when clicking arrow
+  arrow.addEventListener("click", (e) => {
+    e.stopPropagation();
+    e.preventDefault();
+    dropdownMenu.style.display =
+      dropdownMenu.style.display === "block" ? "none" : "block";
+  });
+});
+</script>
+
+
+</body>
+</html>
+
+  <!-- HEADER -->
+
+
+ <section class="top-deals container">
+  <div class="deal green">
+    <h2>Top Deals of the Week</h2>
+    <a href="404.html">Shop Now</a>
+  </div>
+  <div class="deal supplements">
+    <h2>Vitamins & Supplements</h2>
+    <a href="404.html">Shop Now</a>
+  </div>
+</section>  <!-- ✅ Missing closing tag added -->
+
+
+  <!-- PRODUCTS SECTION -->
+<section class="products container">
+  <h2>Products</h2>
+  <div class="product-grid">
+
+    <div class="product-card">
+      <span class="sale">Sale</span>
+      <img src="Prebiotic.webp" alt="">
+      <h3>Prebiotic Fiber Capsules</h3>
+      <p><span class="price-old">$34.00</span> $24.00</p>
+     <a href="404.html" class="add-btn">Add to Cart</a>
+
+
+
+    </div>
+
+    <div class="product-card">
+      <img src="Nexium.webp" alt="">
+      <h3>Nexium 24HR Capsules</h3>
+      <p>$15.00</p>
+     <a href="404.html" class="add-btn">Add to Cart</a>
+
+
+    </div>
+
+    <div class="product-card">
+      <img src="Umcka.webp" alt="">
+      <h3>Umcka ColdCare Syrup</h3>
+      <p>$5.00</p>
+     <a href="404.html" class="add-btn">Add to Cart</a>
+
+    </div>
+
+    <div class="product-card">
+      <span class="sale">Sale</span>
+      <img src="Biotin.webp" alt="">
+      <h3>Biotin 10000 MCG Tablets</h3>
+      <p><span class="price-old">$18.00</span> $10.00</p>
+     <a href="404.html" class="add-btn">Add to Cart</a>
+
+
+    </div>
+
+    <div class="product-card">
+      <img src="Vitamin (2).webp" alt="">
+      <h3>Vitamin C 500mg Tablets</h3>
+      <p>$11.00</p>
+     <a href="404.html" class="add-btn">Add to Cart</a>
+
+    </div>
+
+    <div class="product-card">
+      <span class="sale">Sale</span>
+      <img src="CLA.webp" alt="">
+      <h3>CLA 1000 Softgels</h3>
+      <p><span class="price-old">$36.00</span> $30.00</p>
+     <a href="404.html" class="add-btn">Add to Cart</a>
+
+    </div>
+
+    <div class="product-card">
+      <img src="Vitamin (1).webp" alt="">
+      <h3>Vitamin D3 1000 IU</h3>
+      <p>$12.00</p>
+     <a href="404.html" class="add-btn">Add to Cart</a>
+
+    </div>
+
+    <div class="product-card">
+      <img src="Omega.webp" alt="">
+      <h3>Omega 3 Fish Oil</h3>
+      <p>$20.00</p>
+     <a href="404.html" class="add-btn">Add to Cart</a>
+
+    </div>
+
+    <div class="product-card">
+      <span class="sale">Sale</span>
+      <img src="Zinc.webp" alt="">
+      <h3>Zinc Tablets 50mg</h3>
+      <p><span class="price-old">$10.00</span> $7.00</p>
+     <a href="404.html" class="add-btn">Add to Cart</a>
+
+    </div>
+     <div class="product-card">
+      <img src="Magnesium.webp" alt="">
+      <h3>Magnesium 250mg</h3>
+      <p>$17.00</p>
+     <a href="404.html" class="add-btn">Add to Cart</a>
+
+    </div>
+    
+    <div class="product-card">
+      <img src="Multivitamin.webp" alt="">
+      <h3>Multivitamin for Women</h3>
+      <p>$25.00</p>
+     <a href="404.html" class="add-btn">Add to Cart</a>
+
+    </div>
+    
+
+    <div class="product-card">
+      <span class="sale">Sale</span>
+      <img src="Vitamin.webp" alt="">
+      <h3>Vitamin B Complex Capsules</h3>
+      <p><span class="price-old">$28.00</span> $19.00</p>
+     <a href="404.html" class="add-btn">Add to Cart</a>
+
+    </div>
+
+    <div class="product-card">
+      <img src="Iron.webp" alt="">
+      <h3>Iron + Folic Acid Tablets</h3>
+      <p>$14.00</p>
+     <a href="404.html" class="add-btn">Add to Cart</a>
+
+    </div>
+     <div class="product-card">
+      <span class="sale">Sale</span>
+      <img src="Probiotic.webp" alt="">
+      <h3>Probiotic Daily Formula</h3>
+        <p>$32.00</span> $26.00</p>
+     <a href="404.html" class="add-btn">Add to Cart</a>
+
+    </div>
+
+    
+
+    <div class="product-card">
+      <img src="Calcium.webp" alt="">
+      <h3>Calcium + Vitamin D Combo</h3>
+      <p>$22.00</p>
+     <a href="404.html" class="add-btn">Add to Cart</a>
+
+    </div>
+
+
+    </div>
+
+  </div>
+</section>
+
+
+  <!-- ACE OFFER SECTION -->
+  <section class="ace-offer container">
+    <div class="offer-content">
+      <img src="ACE.webp" alt="ACE Cold Compress">
+      <div class="text">
+        <h2>ACE Reusable Cold Compress</h2>
+        <p><span>20% OFF</span> - Shop Now</p>
+     <a href="404.html" class="add-btn">Add to Cart</a>
+
+    </div>
+
+
+      </div>
+    </div>
+  </section>
+
+  <!-- RECENT POSTS -->
+  <section class="recent-posts container">
+    <h2>Recent Posts</h2>
+    <div class="posts-grid">
+      <div class="post"><img src="5.webp" alt=""><p>5 Ways to Boost Immunity</p></div>
+      <div class="post"><img src="Top.webp" alt=""><p>Top 10 Vitamins for Health</p></div>
+      <div class="post"><img src="Natural.webp" alt=""><p>Natural Beauty Remedies</p></div>
+    </div>
+    <script>
 document.addEventListener("DOMContentLoaded", function () {
   const menuIcon = document.getElementById("menu-icon");
   const navbar = document.getElementById("navbar");
@@ -229,109 +438,6 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 </script>
 
-
-
-
-  <section class="conditions">
-    <!-- 1 to 12 (previous ones) -->
-    <div class="condition">
-      <img src="infection.webp" alt="Infection">
-      <h2>Infection</h2>
-      <p>Caused by bacteria, viruses, or fungi. Prevention includes hygiene and vaccination.</p>
-    </div>
-
-    <div class="condition">
-      <img src="fever.webp" alt="Fever">
-      <h2>Fever</h2>
-      <p>A temporary rise in body temperature. Stay hydrated and rest for recovery.</p>
-    </div>
-
-    <div class="condition">
-      <img src="cancer (1).webp" alt="Cancer">
-      <h2>Cancer</h2>
-      <p>Uncontrolled cell growth. Early detection improves treatment outcomes.</p>
-    </div>
-
-    <div class="condition">
-      <img src="diabities.webp" alt="Diabetes">
-      <h2>Diabetes</h2>
-      <p>Chronic condition affecting insulin production. Manage through diet and exercise.</p>
-    </div>
-
-    <div class="condition">
-      <img src="heart.webp" alt="Heart Disease">
-      <h2>Heart Disease</h2>
-      <p>Conditions affecting the heart. Maintain a balanced diet and stay active.</p>
-    </div>
-
-    <div class="condition">
-      <img src="mentalhealth.webp" alt="Mental Health">
-      <h2>Mental Health</h2>
-      <p>Emotional and psychological well-being. Practice mindfulness and seek support.</p>
-    </div>
-
-    <div class="condition">
-      <img src="asthma.webp" alt="Asthma">
-      <h2>Asthma</h2>
-      <p>Chronic lung condition. Avoid triggers and use prescribed inhalers.</p>
-    </div>
-
-    <div class="condition">
-      <img src="skin.webp" alt="Skin Diseases">
-      <h2>Skin Diseases</h2>
-      <p>Caused by infections or allergies. Maintain skin hygiene and stay hydrated.</p>
-    </div>
-
-    <div class="condition">
-      <img src="Pneumonia.webp" alt="Pneumonia">
-      <h2>Pneumonia</h2>
-      <p>Lung infection causing cough and fever. Timely treatment is essential.</p>
-    </div>
-
-    <div class="condition">
-      <img src="Thyroid.webp" alt="Thyroid">
-      <h2>Thyroid</h2>
-      <p>Hormone imbalance affecting metabolism. Regular checkups are key.</p>
-    </div>
-
-    <div class="condition">
-      <img src="Lung.webp" alt="Lung Disease">
-      <h2>Lung Disease</h2>
-      <p>Reduces oxygen intake. Avoid smoking and air pollution.</p>
-    </div>
-
-    <div class="condition">
-      <img src="Kidney.webp" alt="Kidney Disease">
-      <h2>Kidney Disease</h2>
-      <p>Impacts blood filtration. Stay hydrated and reduce salt intake.</p>
-    </div>
-
-    <!-- 6 More Added -->
-    <div class="condition">
-      <img src="Arthritis.webp" alt="Arthritis">
-      <h2>Arthritis</h2>
-      <p>Joint inflammation causing pain and stiffness. Regular exercise helps manage symptoms.</p>
-    </div>
-
-    <div class="condition">
-      <img src="Obesity.webp" alt="Obesity">
-      <h2>Obesity</h2>
-      <p>Excess body fat increases risk of heart and joint issues. Maintain balanced nutrition.</p>
-    </div>
-
-    <div class="condition">
-      <img src="Pregnancy.webp" alt="Pregnancy Care">
-      <h2>Pregnancy Care</h2>
-      <p>Healthy pregnancy requires proper diet, hydration, and medical checkups.</p>
-    </div>
-
-    <div class="condition">
-      <img src="eye.webp" alt="Eye Disorders">
-      <h2>Eye Disorders</h2>
-      <p>Includes vision loss and cataracts. Protect eyes from screens and UV light.</p>
-    </div>
-  </section>
-</body>
 
 
 
