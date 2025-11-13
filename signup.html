@@ -4,244 +4,360 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Stackly Login</title>
-  <link rel="stylesheet" href="signup.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-</head>
-<body>
-<!-- ✅ HEADER START -->
-<header class="header">
-  <a href="index.html" class="logo">
-    <img src="logo.webp" alt="STACKLY Logo">
-    <span><strong>𝑺𝑻𝑨𝑪𝑲𝑳𝒀</strong></span>
-  </a>
 
-  <nav class="navbar" id="navbar">
-    <ul>
-      <li class="dropdown">
-        <a href="#" class="dropdown-toggle">Home 1 ▾</a>
-        <ul class="dropdown-menu">
-          <li><a href="home2.html">Home 2</a></li>
-        </ul>
-      </li>
-      <li><a href="docsavai.html">Available Doctors</a></li>
-      <li><a href="healthyliving.html">Healthy Living</a></li>
-      <li><a href="condition.html">Condition</a></li>
-      <li><a href="contact1.html">Contact</a></li>
-      <li><a href="login.html">Login</a></li>
-    </ul>
-  </nav>
+  <style>
+    /* ✅ BASIC HEADER STYLE */
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #eaf6f4;
+      padding: 10px 30px;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      box-sizing: border-box;
+    }
 
-  <a href="docsavai.html" class="find-doctor-btn">Find a Doctor</a>
+    /* ✅ LOGO */
+    .logo {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+    }
+    header .logo img {
+      width: 60px;
+      height: 60px;
+      border-radius: 8px;
+      margin-right: 2px;
+    }
+    header .logo span {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #18055391;
+      position: relative;
+      top: 1px;
+    }
 
-  <div class="menu-icon" id="menu-icon">&#9776;</div>
-</header>
-<!-- ✅ HEADER END -->
+    /* ✅ NAVBAR */
+    .navbar ul {
+      list-style: none;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      margin: 0;
+      padding: 0;
+    }
+    .navbar a {
+      text-decoration: none;
+      color: #003b3b;
+      font-weight: 500;
+    }
+    .navbar a:hover {
+      color: #009999;
+    }
 
-<style>
-/* ✅ BASIC HEADER STYLE */
-.header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: #eaf6f4;
-  padding: 10px 30px;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: 1000;
-}
+    /* ✅ DROPDOWN MENU */
+    .dropdown {
+      position: relative;
+    }
+    .dropdown-menu {
+      display: none;
+      position: absolute;
+      top: 35px;
+      left: 0;
+      background: #e9f7f6;
+      border-radius: 8px;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+      list-style: none;
+      padding: 8px 0;
+      min-width: 120px;
+    }
+    .dropdown-menu li {
+      width: 100%;
+    }
+    .dropdown-menu li a {
+      display: block;
+      padding: 8px 15px;
+      color: #003b3b;
+    }
+    .dropdown-menu li a:hover {
+      background-color: #c9eeea;
+    }
 
-/* ✅ LOGO */
-.logo {
-  display: flex;
-  align-items: center;
-  text-decoration: none;
-}
-header .logo img {
-  width: 60px;
-  height: 60px;
-  border-radius: 8px;
-  margin-right: 2px;
-  vertical-align: middle;
-}
-header .logo span {
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: #18055391;
+    /* ✅ SHOW ON HOVER (DESKTOP) */
+    .dropdown:hover .dropdown-menu {
+      display: block;
+    }
+
+    /* ✅ FIND BUTTON */
+    .find-doctor-btn {
+      background-color: #009999;
+      color: white !important;
+      padding: 7px 15px;
+      border-radius: 25px;
+      text-decoration: none;
+      white-space: nowrap;
+      font-weight: 500;
+    }
+    .find-doctor-btn:hover {
+      background-color: #007777;
+    }
+
+    /* ✅ HAMBURGER */
+    .menu-icon {
+      font-size: 26px;
+      cursor: pointer;
+      display: none;
+      color: #003b3b;
+      margin-left: 10px;
+    }
+
+    /* ✅ RESPONSIVE MENU */
+    @media (max-width: 900px) {
+      .navbar {
+        display: none;
+        flex-direction: column;
+        background-color: #009999;
+        position: absolute;
+        top: 70px;
+        right: 20px;
+        padding: 15px;
+        border-radius: 10px;
+        width: 220px;
+      }
+      .navbar.active {
+        display: flex;
+      }
+      .navbar ul {
+        flex-direction: column;
+        gap: 0;
+      }
+      .navbar a {
+        color: white;
+        padding: 10px;
+        border-radius: 8px;
+        display: block;
+      }
+      .navbar a:hover {
+        background-color: #007777;
+      }
+      .find-doctor-btn {
+        display: none;
+      }
+      .menu-icon {
+        display: block;
+      }
+
+      /* ✅ Mobile dropdown open on click */
+      .dropdown-menu {
+        position: static;
+        background: #008c8c;
+        box-shadow: none;
+        border-radius: 6px;
+        padding: 5px 0;
+      }
+      .dropdown-menu li a {
+        color: white;
+        padding-left: 25px;
+      }
+    }
+
+    /* ✅ LOGIN PAGE */
+    body {
+      margin: 0;
+      font-family: "Poppins", sans-serif;
+      background-color: #f7fbfa;
+      padding-top: 80px;
+      overflow-x: hidden;
+    }
+
+    .login-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: calc(100vh - 150px);
+      padding: 40px 20px;
+      gap: 50px;
+      box-sizing: border-box;
+    }
+
+    .login-left {
+      flex: 1;
+      text-align: left;
+      max-width: 400px;
+    }
+
+    .login-left h1 {
+      color: #009999;
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+    }
+
+    .login-left p {
+      color: #333;
+      line-height: 1.6;
+    }
+
+    .signup-text {
+      margin-top: 15px;
+    }
+
+    .signup-text a {
+      color: #009999;
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    .login-right {
+      flex: 1;
+      max-width: 400px;
+      background: white;
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.1);
+    }
+
+    .login-right label {
+      display: block;
+      font-weight: 500;
+      margin-bottom: 5px;
+      color: #003b3b;
+    }
+
+    .login-right input {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 1rem;
+    }
+
+    .login-btn {
+      background-color: #009999;
+      color: white;
+      padding: 10px;
+      width: 100%;
+      border: none;
+      border-radius: 25px;
+      font-size: 1rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .login-btn:hover {
+      background-color: #007777;
+    }
+
+    footer {
+      text-align: center;
+      background-color: #0c0016;
+      color: white;
+      padding: 15px 0;
+      font-size: 0.9rem;
+      width: 100%;
+    }
+
+    /* ✅ RESPONSIVE FIXES */
+    @media (max-width: 768px) {
+      .login-container {
+        flex-direction: column;
+        padding: 20px;
+        gap: 30px;
+      }
+
+      .login-left, .login-right {
+        max-width: 90%;
+        text-align: center;
+      }
+
+      .login-right {
+        padding: 25px 20px;
+      }
+
+      .login-left h1 {
+        font-size: 2rem;
+      }
+    }
+    .dropdown {
   position: relative;
-  top: 1px;
-}
-
-/* ✅ NAVBAR */
-.navbar ul {
-  list-style: none;
   display: flex;
   align-items: center;
-  gap: 20px;
-  margin: 0;
-  padding: 0;
-}
-.navbar a {
-  text-decoration: none;
-  color: #003b3b;
-  font-weight: 500;
-}
-.navbar a:hover {
-  color: #009999;
+  gap: 3px;
 }
 
-/* ✅ DROPDOWN MENU */
-.dropdown {
-  position: relative;
-}
-.dropdown-menu {
-  display: none;
-  position: absolute;
-  top: 35px;
-  left: 0;
-  background: #e9f7f6;
-  border-radius: 8px;
-  box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-  list-style: none;
-  padding: 8px 0;
-  min-width: 120px;
-}
-.dropdown-menu li {
-  width: 100%;
-}
-.dropdown-menu li a {
-  display: block;
-  padding: 8px 15px;
-  color: #003b3b;
-}
-.dropdown-menu li a:hover {
-  background-color: #c9eeea;
-}
-
-/* ✅ SHOW ON HOVER (DESKTOP) */
-.dropdown:hover .dropdown-menu {
-  display: block;
-}
-
-/* ✅ FIND BUTTON */
-.find-doctor-btn {
-  background-color: #009999;
-  color: white !important;
-  padding: 7px 15px;
-  border-radius: 25px;
-  text-decoration: none;
-  white-space: nowrap;
-  font-weight: 500;
-}
-.find-doctor-btn:hover {
-  background-color: #007777;
-}
-
-/* ✅ HAMBURGER */
-.menu-icon {
-  font-size: 26px;
+.dropdown-arrow {
   cursor: pointer;
-  display: none;
   color: #003b3b;
-  margin-left: 10px;
+  font-weight: bold;
 }
 
-/* ✅ RESPONSIVE MENU */
 @media (max-width: 900px) {
-  .navbar {
-    display: none;
+  .dropdown {
     flex-direction: column;
-    background-color: #009999;
-    position: absolute;
-    top: 70px;
-    right: 20px;
-    padding: 15px;
-    border-radius: 10px;
-    width: 220px;
+    align-items: flex-start;
   }
-  .navbar.active {
-    display: flex;
-  }
-  .navbar ul {
-    flex-direction: column;
-    gap: 0;
-  }
-  .navbar a {
-    color: white;
-    padding: 10px;
-    border-radius: 8px;
-    display: block;
-  }
-  .navbar a:hover {
-    background-color: #007777;
-  }
-  .find-doctor-btn {
-    display: none;
-  }
-  .menu-icon {
-    display: block;
-  }
-
-  /* ✅ Mobile dropdown open on click */
-  .dropdown-menu {
-    position: static;
-    background: #008c8c;
-    box-shadow: none;
-    border-radius: 6px;
-    padding: 5px 0;
-  }
-  .dropdown-menu li a {
-    color: white;
-    padding-left: 25px;
+  .dropdown-arrow {
+    margin-top: 5px;
   }
 }
-</style>
 
-<script>
-document.addEventListener("DOMContentLoaded", function () {
-  const menuIcon = document.getElementById("menu-icon");
-  const navbar = document.getElementById("navbar");
-  const dropdownToggles = document.querySelectorAll(".dropdown-toggle");
+  </style>
+</head>
 
-  // Toggle mobile navbar
-  menuIcon.addEventListener("click", () => {
-    navbar.classList.toggle("active");
-  });
+<body>
+  <!-- ✅ HEADER START -->
+  <header class="header">
+    <a href="index.html" class="logo">
+      <img src="logo.webp" alt="STACKLY Logo">
+      <span><strong>𝑺𝑻𝑨𝑪𝑲𝑳𝒀</strong></span>
+    </a>
 
-  // Dropdown click for mobile
-  dropdownToggles.forEach(toggle => {
-    toggle.addEventListener("click", (e) => {
-      e.preventDefault();
-      const dropdownMenu = toggle.nextElementSibling;
-      dropdownMenu.style.display =
-        dropdownMenu.style.display === "block" ? "none" : "block";
-    });
-  });
-});
-</script>
+    <nav class="navbar" id="navbar">
+  <ul>
+    <li class="dropdown">
+  <a href="index.html" class="home-link">Home 1</a>
+  <span class="dropdown-arrow">▾</span>
+  <ul class="dropdown-menu">
+    <li><a href="home2.html">Home 2</a></li>
+  </ul>
+</li>
 
+    <li><a href="docsavai.html">Available Doctors</a></li>
+    <li><a href="healthyliving.html">Healthy Living</a></li>
+    <li><a href="condition.html">Condition</a></li>
+    <li><a href="contact1.html">Contact</a></li>
+    <li><a href="login.html">Login</a></li>
+  </ul>
+</nav>
 
+    <a href="docsavai.html" class="find-doctor-btn">Find a Doctor</a>
+    <div class="menu-icon" id="menu-icon">&#9776;</div>
+  </header>
+  <!-- ✅ HEADER END -->
 
-  
   <div class="login-container">
     <!-- Left Section -->
     <div class="login-left">
       <h1>SIGNUP</h1>
       <p>Hey welcome back!<br>We hope you had a great day</p>
 
-      <p class="signup-text">already a member? 
-        <a href="login.html">login</a>
+      <p class="signup-text">Already a member?
+        <a href="login.html">Login</a>
       </p>
-
-    
     </div>
 
     <!-- Right Section -->
     <div class="login-right">
       <form onsubmit="return handleLogin(event)">
         <label for="Name">Name</label>
-        <input type="Name" id="Name" placeholder="Enter your Name" required>
+        <input type="text" id="Name" placeholder="Enter your Name" required>
+
         <label for="email">E-Mail</label>
         <input type="email" id="email" placeholder="Eg. info@thestackly.com" required>
 
@@ -257,13 +373,27 @@ document.addEventListener("DOMContentLoaded", function () {
     <p>© 2025 Stackly | All Rights Reserved</p>
   </footer>
 
-  <script>
-    function handleLogin(event) {
-      event.preventDefault(); // Stop normal form submission
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const menuIcon = document.getElementById("menu-icon");
+  const navbar = document.getElementById("navbar");
+  const dropdownArrow = document.querySelector(".dropdown-arrow");
+  const dropdownMenu = document.querySelector(".dropdown-menu");
 
-      // Redirect to the 404 page
-      window.location.href = "404.html";
-    }
-  </script>
+  // ✅ Toggle menu on mobile
+  menuIcon.addEventListener("click", () => {
+    navbar.classList.toggle("active");
+  });
+
+  // ✅ Open dropdown when clicking arrow (not link)
+  dropdownArrow.addEventListener("click", (e) => {
+    e.stopPropagation();
+    dropdownMenu.style.display =
+      dropdownMenu.style.display === "block" ? "none" : "block";
+  });
+});
+</script>
+
+
 </body>
 </html>
