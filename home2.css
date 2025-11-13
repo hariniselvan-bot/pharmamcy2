@@ -672,6 +672,27 @@ footer {
     position: relative;
   }
 }
+/* 🔹 FIX: Remove blue strip under header on mobile */
+@media (max-width: 900px) {
+  nav ul {
+    position: fixed !important;
+    top: 70px !important;
+    right: 0 !important;
+    background-color: #0ea5a0 !important;
+    border-radius: 0 !important;
+    z-index: 2000 !important;
+  }
+
+  header {
+    background-color: #f6fffaf0 !important;
+    z-index: 3000 !important;
+  }
+
+  /* ensure no body background leak */
+  body {
+    background-color: #f6fffaf0;
+  }
+}
 
 /* RESPONSIVE */
 @media (max-width: 768px) {
