@@ -61,11 +61,6 @@ nav ul li a:hover {
 }
 
 /* Mobile menu (hamburger toggle) */
-.menu-toggle {
-  display: none;
-  flex-direction: column;
-  cursor: pointer;
-}
 
 .menu-toggle div {
   width: 25px;
@@ -577,6 +572,27 @@ body {
   line-height:1.25;
   flex-shrink:0;
 }
+/* 🔹 FIX: Remove blue strip under header on mobile */
+@media (max-width: 900px) {
+  nav ul {
+    position: fixed !important;
+    top: 70px !important;
+    right: 0 !important;
+    background-color: #0ea5a0 !important;
+    border-radius: 0 !important;
+    z-index: 2000 !important;
+  }
+
+  header {
+    background-color: #f6fffaf0 !important;
+    z-index: 3000 !important;
+  }
+
+  /* ensure no body background leak */
+  body {
+    background-color: #f6fffaf0;
+  }
+}
 
 /* Large screens: show more columns and center content */
 @media (min-width: 900px){
@@ -727,10 +743,35 @@ footer {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 15px 25px;
+      padding: 15px 25px;
     position: relative;
   }
 }
+@media (max-width: 900px) {
+  .navbar {
+    position: fixed;
+    top: 70px;
+    right: 20px;
+    z-index: 2000; /* ensures it stays above everything */
+  }
+}
+@media (max-width: 900px) {
+  .navbar {
+    position: fixed;
+    top: 70px;
+    right: 20px;
+    width: 220px;
+    background-color: #009999;
+    border-radius: 0;
+    z-index: 2000;
+  }
+
+  .header {
+    background-color: #eaf6f4;
+    z-index: 3000;
+  }
+}
+
 /* 🌙 Responsive Navbar Design */
 @media (max-width: 900px) 
 {
