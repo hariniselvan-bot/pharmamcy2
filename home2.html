@@ -14,17 +14,26 @@
     <span><strong>𝑺𝑻𝑨𝑪𝑲𝑳𝒀</strong></span>
   </a>
 
+<!-- ✅ HEADER START -->
+<header class="header">
+  <a href="index.html" class="logo">
+    <img src="logo.webp" alt="STACKLY Logo">
+    <span><strong>𝑺𝑻𝑨𝑪𝑲𝑳𝒀</strong></span>
+  </a>
+
   <nav class="navbar" id="navbar">
     <ul>
       <li class="dropdown">
-        <div class="dropdown-toggle">
-          <a href="home2.html">Home 2</a>
-          <span class="arrow">▼</span>
-        </div>
-        <ul class="dropdown-menu">
-          <li><a href="index.html">Home 1</a></li>
-        </ul>
-      </li>
+  <div class="dropdown-toggle">
+    <a href="home2.html">Home 2</a>
+    <span class="arrow">▼</span>
+  </div>
+  <ul class="dropdown-menu">
+    <li><a href="index.html">Home 1</a></li>
+  </ul>
+</li>
+
+      <li class="home1"><a href="index.html">Home 1</a></li>
       <li><a href="pet.html">Pet Pills</a></li>
       <li><a href="drugs.html">Drugs & Supplements</a></li>
       <li><a href="contact.html">Contact</a></li>
@@ -33,8 +42,13 @@
   </nav>
 
   <a href="docsavai.html" class="find-doctor-btn">Find a Doctor</a>
-
   <div class="menu-icon" id="menu-icon">&#9776;</div>
+</header>
+<!-- ✅ HEADER END -->
+
+</header>
+<!-- ✅ HEADER END -->
+
 </header>
 <!-- ✅ HEADER END -->
 
@@ -143,7 +157,96 @@ header .logo span {
   transform: rotate(180deg);
 }
 
+/* Align Home 2 and arrow properly */
+.dropdown-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
 
+.dropdown-toggle .arrow {
+  color: #000;
+  font-size: 0.7em;
+  transform: translateY(1px);
+}
+
+/* Mobile style */
+@media (max-width: 900px) {
+  .navbar {
+    display: none;
+    flex-direction: column;
+    background-color: #009999;
+    position: absolute;
+    top: 70px;
+    right: 20px;
+    padding: 15px;
+    border-radius: 10px;
+    width: 220px;
+  }
+
+  .navbar.active {
+    display: flex;
+  }
+
+  .navbar ul {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .navbar a {
+    color: white;
+    padding: 10px;
+    border-radius: 8px;
+    display: block;
+  }
+
+  .navbar a:hover {
+    background-color: #007777;
+  }
+
+  .home1 {
+    margin-left: 25px; /* indentation for Home1 */
+  }
+}
+.navbar a:hover,
+.navbar a:active {
+  background-color: #007777;
+  transition: none;
+}
+
+
+/* Desktop - keep horizontal */
+@media (min-width: 901px) {
+  .navbar ul {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .home1 {
+    display: none; /* hide Home1 on desktop */
+  }
+}
+
+/* Center the Home 2 text vertically like others */
+.dropdown-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center; /* centers text horizontally */
+  gap: 5px; /* space between text and arrow */
+}
+
+/* Make arrow black and keep on same line */
+.dropdown-toggle .arrow {
+  color: #000;
+  font-size: 0.7em;
+  transform: translateY(1px);
+}
+.dropdown-toggle a {
+  display: flex;
+  align-items: center;
+}
 
 /* ✅ SHOW ON HOVER (DESKTOP) */
 .dropdown:hover .dropdown-menu {
@@ -221,6 +324,165 @@ header .logo span {
     color: white;
     padding-left: 25px;
   }
+  /* --- DROPDOWN WRAPPER --- */
+.dropdown {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* pushes arrow to right side */
+  width: 160px; /* adjust if needed */
+}
+/* Align Home 2 and arrow properly */
+.dropdown-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+
+.dropdown-toggle .arrow {
+  color: #000;
+  font-size: 0.7em;
+  transform: translateY(1px);
+}
+
+/* Style dropdown menu */
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 35px;
+  left: 0;
+  background: #e9f7f6;
+  border-radius: 8px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+  list-style: none;
+  padding: 8px 0;
+  min-width: 120px;
+}
+
+.dropdown-menu li a {
+  display: block;
+  padding: 8px 15px;
+  color: #003b3b;
+}
+
+.dropdown-menu li a:hover {
+  background-color: #c9eeea;
+}
+
+/* ✅ Mobile adjustments */
+@media (max-width: 900px) {
+  .navbar ul {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .dropdown-menu {
+    position: static;
+    background: #008c8c;
+    box-shadow: none;
+    border-radius: 6px;
+    padding: 5px 0;
+  }
+
+  .dropdown-menu li a {
+    color: white;
+    padding-left: 25px;
+  }
+}
+
+
+/* --- DROPDOWN ARROW --- */
+.dropdown .arrow {
+  cursor: pointer;
+  font-size: 0.7em;
+  color: #000;
+  transition: transform 0.3s ease;
+  margin-left: auto; /* ensures it stays to the right */
+}
+
+.dropdown.open .arrow {
+  transform: rotate(180deg);
+}
+
+/* --- DROPDOWN MENU (DESKTOP) --- */
+.dropdown-menu {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+  background: #e9f7f6;
+  border-radius: 6px;
+  position: absolute;
+  top: 35px;
+  left: 0;
+  width: 130px;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+  z-index: 999;
+}
+
+.dropdown.open .dropdown-menu {
+  max-height: 100px;
+}
+
+/* --- MENU LINKS --- */
+.dropdown-menu li a {
+  display: block;
+  padding: 8px 15px;
+  color: #003b3b;
+}
+
+.dropdown-menu li a:hover {
+  background-color: #c9eeea;
+}
+
+/* --- MOBILE VIEW --- */
+@media (max-width: 900px) {
+  .navbar ul {
+    flex-direction: column;
+  }
+
+  .dropdown {
+    width: 100%;
+    justify-content: flex-start;
+    position: relative;
+  }
+
+  .dropdown .arrow {
+    color: white;
+    margin-left: auto; /* keeps it right-aligned */
+    margin-right: 10px;
+  }
+
+  .dropdown-menu {
+    position: static;
+    width: 100%;
+    background: #008c8c;
+    box-shadow: none;
+  }
+
+  .dropdown-menu li a {
+    color: white;
+    padding: 10px 25px;
+  }
+}
+/* Fix alignment and color of dropdown arrow */
+.dropdown {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* pushes arrow to right */
+  padding: 0 10px;
+}
+
+/* the arrow itself */
+.dropdown .arrow {
+  display: inline-block;
+  color: #000; /* make arrow black */
+  font-size: 0.7em;
+  margin-left: auto;
+  transform: translateY(1px); /* slight vertical adjustment */
+}
+
 }
 </style>
 
@@ -228,33 +490,22 @@ header .logo span {
 document.addEventListener("DOMContentLoaded", function () {
   const menuIcon = document.getElementById("menu-icon");
   const navbar = document.getElementById("navbar");
-  const dropdownToggles = document.querySelectorAll(".dropdown-toggle");
+  const arrow = document.querySelector(".arrow");
+  const dropdownMenu = document.querySelector(".dropdown-menu");
 
-  // Toggle mobile navbar
+  // Toggle mobile menu
   menuIcon.addEventListener("click", () => {
     navbar.classList.toggle("active");
   });
 
-  // Fix: make "Home 1" clickable while still toggling submenu
-  dropdownToggles.forEach(toggle => {
-    toggle.addEventListener("click", (e) => {
-      const dropdownMenu = toggle.nextElementSibling;
-
-      if (window.innerWidth <= 900) {
-        // Separate the arrow part from the text
-        const arrowClicked = e.offsetX > toggle.offsetWidth - 20;
-
-        if (arrowClicked) {
-          // prevent navigation and toggle submenu only if arrow area is clicked
-          e.preventDefault();
-          dropdownMenu.style.display =
-            dropdownMenu.style.display === "block" ? "none" : "block";
-        } 
-        // else → let normal link navigation happen (index.html will open)
-      }
-    });
+  // Toggle Home1 dropdown
+  arrow.addEventListener("click", (e) => {
+    e.preventDefault();
+    dropdownMenu.style.display =
+      dropdownMenu.style.display === "block" ? "none" : "block";
   });
 });
+
 </script>
 
 
