@@ -341,7 +341,7 @@ main {
 }
 
 
-}
+
 /* 🩵 Hero Section Layout */
 .hero-section {
   display: flex;
@@ -407,14 +407,103 @@ body {
   line-height: 1.6;
   padding: 30px;
 }
-/* Living Healthy — layout + mobile friendly cards */
-.living-healthy {
-  padding: 36px 20px;
-  background: linear-gradient(180deg, rgba(245,250,250,0.6), rgba(240,247,246,0.6));
-  color: #073c38;
+@media (max-width: 768px) {
+  .card-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .card {
+    width: 90%;          /* take up full mobile width */
+    margin: 0 auto 20px; /* center with some space below */
+  }
+
+  /* If you used a horizontal scroll container, disable it on mobile */
+  .cards {
+    overflow: visible;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
+@media (max-width: 768px) {
+  .card-slider {
+    overflow-x: hidden;   /* hides extra cards */
+    scroll-snap-type: none;
+  }
+
+  .card {
+    flex: 0 0 100%;       /* show only one card per screen */
+    max-width: 100%;
+  }
+}
+@media (max-width: 768px) {
+  .card-container,
+  .cards,
+  .card-slider {
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow-x: hidden; /* hide next card fully */
+  }
+
+  .card {
+    flex: 0 0 100%;
+    max-width: 90%;
+    margin: 0 auto 20px;
+    box-sizing: border-box;
+  }
+
+  /* optional: center the text and image inside */
+  .card img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
+
+  /* remove any spacing that pushes cards to the side */
+  .card-container::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 /* header row */
+/* ✅ Living Healthy Cards — Mobile Fix */
+@media (max-width: 768px) {
+  .lh-cards {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow-x: hidden; /* hide next card */
+    padding: 0;
+    margin: 0 auto;
+  }
+
+  .lh-card {
+    width: 90%;              /* make it wide but centered */
+    max-width: 400px;        /* limit for good look */
+    margin: 0 auto 25px;     /* space between cards */
+    box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    border-radius: 15px;
+  }
+
+  .lh-card-img img {
+    width: 100%;
+    height: auto;
+    border-radius: 15px 15px 0 0;
+    object-fit: cover;
+  }
+
+  .lh-card-title {
+    text-align: center;
+    padding: 12px 0;
+    font-weight: 600;
+  }
+}
+
 .living-healthy .section-head {
   display:flex;
   justify-content:space-between;
