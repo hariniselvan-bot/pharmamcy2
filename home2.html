@@ -252,7 +252,7 @@ document.addEventListener("DOMContentLoaded", function () {
       window.location.href = "404.html";
     } 
     // ✅ If search input matches one of the categories
-    else if (["medicine", "fitness", "diagnostics"].includes(searchText)) {
+    else if (["medicine", "", ""].includes(searchText)) {
       window.location.href = searchText + ".html";
     } 
     // ❌ Otherwise show an error popup
