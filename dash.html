@@ -1,0 +1,358 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Stackly — Dashboard with Chart.js</title>
+
+  <!-- Chart.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <style>
+    :root{
+      --accent:#009999;
+      --teal:#007b7b;
+      --muted:#eaf6f4;
+      --card:#ffffff;
+      --radius:12px;
+      --shadow: 0 8px 24px rgba(11,34,48,0.06);
+      --text:#06323b;
+    }
+    *{box-sizing:border-box}
+    body{font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, Arial; margin:0; background:#f3f7f8; color:var(--text); -webkit-font-smoothing:antialiased;}
+    a{color:inherit;text-decoration:none}
+
+    /* ========== HEADER ========== */
+    .header {
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      padding:12px 20px;
+      background:var(--muted);
+      position:fixed;
+      top:0; left:0; right:0;
+      z-index:1200;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+    }
+    .logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+    .logo img{width:56px;height:56px;border-radius:8px}
+    .logo strong{font-size:1.2rem;color:#382a68}
+
+    /* navbar */
+    nav.navbar { display:flex; align-items:center; gap:18px; }
+    nav.navbar ul { list-style:none; margin:0; padding:0; display:flex; gap:18px; align-items:center; }
+    nav.navbar li { position:relative; }
+    nav.navbar a, .dropdown-toggle { color: #003b3b; font-weight:500; padding:6px 8px; display:inline-flex; align-items:center; gap:8px; border-radius:8px; cursor:pointer; }
+    nav.navbar a:hover { color:var(--teal); background:transparent; }
+
+    .find-doctor-btn { background:var(--accent); color:#fff; padding:8px 14px; border-radius:22px; font-weight:600; text-decoration:none; }
+
+    /* hamburger */
+    .menu-icon { display:none; font-size:24px; cursor:pointer; padding:8px; border-radius:6px; background:transparent; border:none; }
+    @media (max-width:900px){
+      .menu-icon { display:inline-flex; align-items:center; justify-content:center; }
+      nav.navbar { position:absolute; top:68px; right:16px; background:var(--accent); border-radius:12px; padding:12px; width:240px; flex-direction:column; display:none; box-shadow: 0 8px 24px rgba(0,0,0,0.12); }
+      nav.navbar ul { flex-direction:column; gap:0; width:100%; }
+      nav.navbar a, .dropdown-toggle { color:#fff; padding:10px 12px; width:100%; border-radius:8px; display:block; }
+      .find-doctor-btn { display:none; } /* hide on mobile */
+      nav.navbar.active { display:flex; }
+    }
+
+    /* ========== DROPDOWN ========== */
+    .dropdown { position:relative; display:block; }
+    .dropdown-toggle { display:flex; align-items:center; gap:8px; }
+    .arrow { display:inline-block; transition: transform .25s ease; font-size:0.85em; color:#003b3b; margin-left:6px; }
+
+    /* dropdown menu box (desktop) */
+    .dropdown-menu {
+      position:absolute;
+      top:100%;
+      left:0;
+      min-width:160px;
+      background:#e9f7f6;
+      border-radius:10px;
+      box-shadow:0 8px 20px rgba(0,0,0,0.08);
+      overflow:hidden;
+      opacity:0;
+      visibility:hidden;
+      transform:translateY(-6px);
+      transition: all .18s ease;
+      z-index:1100;
+    }
+    .dropdown-menu a { display:block; padding:10px 14px; color:#003b3b; }
+    .dropdown-menu a:hover { background:#c9eeea; }
+
+    /* show on desktop hover */
+    @media (min-width:901px){
+      .dropdown:hover .dropdown-menu { opacity:1; visibility:visible; transform:translateY(0); }
+      .dropdown:hover .arrow { transform:rotate(180deg); color:#003b3b; }
+    }
+
+    /* mobile: submenu flows inside nav and is toggled by JS checkbox/class; style changes */
+    @media (max-width:900px){
+      .dropdown .dropdown-menu { position:static; transform:none; opacity:1; visibility:visible; display:none; background:transparent; box-shadow:none; padding:0; }
+      .dropdown .dropdown-menu a { color:#fff; padding-left:24px; }
+      .dropdown.open .dropdown-menu { display:block; background:#007a7a; border-radius:8px; padding:6px 0; }
+      .dropdown.open .arrow { transform:rotate(180deg); color:#fff; }
+      .dropdown .arrow { color:#fff; margin-left:auto; }
+    }
+
+    /* ========== PAGE LAYOUT ========== */
+    .site-inner{ padding-top:92px; max-width:1200px; margin:0 auto; padding-left:16px; padding-right:16px; }
+    .dashboard-controls { display:flex; justify-content:space-between; align-items:center; gap:12px; margin-bottom:16px; }
+    .controls-left{display:flex;gap:10px;align-items:center}
+    .btn { background:#fff; border:1px solid #e6eef2; padding:8px 12px; border-radius:10px; cursor:pointer; }
+
+    .dashboard-grid { display:grid; grid-template-columns: repeat(12, 1fr); gap:18px; align-items:start; }
+    .card{ background:var(--card); border-radius:var(--radius); padding:16px; box-shadow:var(--shadow); }
+    .span-4{ grid-column: span 4; }
+    .span-6{ grid-column: span 6; }
+    .span-8{ grid-column: span 8; }
+    .span-12{ grid-column: span 12; }
+
+    h1.page-title{ font-size:26px; color:#0b5570; margin:6px 0 6px; }
+
+    .canvas-wrap{ height:180px; position:relative; }
+
+    /* doctors list */
+    .doctor-list li{ list-style:none; padding:10px 0; border-bottom:1px solid #eef4f7; }
+
+    /* responsive */
+    @media (max-width:1100px){ .span-4{grid-column:span 6} .span-6{grid-column:span 6} .span-8{grid-column:span 12} }
+    @media (max-width:700px){ .dashboard-grid{ grid-template-columns: repeat(6,1fr);} .span-4{grid-column:span 6} .span-6{grid-column:span 6} .span-8{grid-column:span 6} .span-12{grid-column:span 6} }
+
+    /* small */
+    .muted { color:#6f8b95; font-size:0.95rem; }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER (keeps structure you had) -->
+  <header class="header">
+    <a href="index.html" class="logo">
+      <img src="logo.webp" alt="STACKLY Logo">
+      <span><strong>𝑺𝑻𝑨𝑪𝑲𝑳𝒀</strong></span>
+    </a>
+
+    <button id="menu-icon" class="menu-icon" aria-label="Toggle menu">☰</button>
+
+    <nav class="navbar" id="navbar" aria-label="Main navigation">
+      <ul>
+        <li class="dropdown" id="dropdown-root">
+          <div class="dropdown-toggle" id="dropdown-toggle">
+            Home 2 <span class="arrow" id="dropdown-arrow">▼</span>
+          </div>
+          <ul class="dropdown-menu" id="dropdown-menu">
+            <li><a href="index.html">Home 1</a></li>
+          </ul>
+        </li>
+
+        <li><a href="pet.html">Pet pills</a></li>
+        <li><a href="drugs.html">Drugs supplimets</a></li>
+        <li><a href="dash.html">Dashboard</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="login.html">Login</a></li>
+      </ul>
+    </nav>
+
+    <a class="find-doctor-btn" href="docsavai.html">Find a Doctor</a>
+  </header>
+
+  <!-- MAIN CONTENT -->
+  <div class="site-inner">
+    <main>
+      <div class="dashboard-controls">
+        <div class="controls-left">
+          <h1 class="page-title">Good Morning!</h1>
+          <div class="muted" style="margin-left:12px">Dashboard</div>
+        </div>
+        <div>
+          <button class="btn">Filter</button>
+          <button class="btn">Monthly</button>
+          <button class="btn">Download</button>
+        </div>
+      </div>
+
+      <div class="dashboard-grid">
+        <!-- Line chart -->
+        <section class="card span-4">
+          <h4>Health Report Pending</h4>
+          <div class="canvas-wrap">
+            <canvas id="lineChart"></canvas>
+          </div>
+        </section>
+
+        <!-- Highlight -->
+        <section class="card span-4" style="background:linear-gradient(180deg,#1f6dff,#2b8bff); color:#fff;">
+          <h4 style="margin-bottom:8px">News From The Doctor</h4>
+          <p style="opacity:.95;line-height:1.3">Our process is designed to make booking appointments and consultations easy and convenient.</p>
+        </section>
+
+        <!-- Donut -->
+        <section class="card span-4">
+          <h4>Supplements Distribution</h4>
+          <div class="canvas-wrap">
+            <canvas id="donutChart"></canvas>
+          </div>
+        </section>
+
+        <!-- Medical Info -->
+        <section class="card span-6">
+          <h4>Medical Information</h4>
+          <p><strong>Cameron Williamson</strong> <span class="muted"> — Patient</span></p>
+          <p class="muted">Current medication: Herbal medicine</p>
+          <p class="muted">Allergies: None</p>
+        </section>
+
+        <!-- Bar chart -->
+        <section class="card span-6">
+          <h4>Patient Health Report</h4>
+          <div class="canvas-wrap">
+            <canvas id="barChart"></canvas>
+          </div>
+        </section>
+
+        <!-- Doctors list -->
+        <aside class="card span-4">
+          <h4>My Doctors</h4>
+          <ul class="doctor-list">
+            <li>Dr. Leslie Alexander</li>
+            <li>Dr. Savannah Nguyen</li>
+            <li>Dr. Darlene Robertson</li>
+          </ul>
+        </aside>
+      </div>
+    </main>
+  </div>
+
+  <!-- ========== SCRIPTS ========== -->
+  <script>
+    // NAVBAR + DROPDOWN logic
+    (function(){
+      const menuIcon = document.getElementById('menu-icon');
+      const navbar = document.getElementById('navbar');
+      const dropdownRoot = document.getElementById('dropdown-root');
+      const dropdownToggle = document.getElementById('dropdown-toggle');
+      const dropdownMenu = document.getElementById('dropdown-menu');
+      const dropdownArrow = document.getElementById('dropdown-arrow');
+
+      // mobile menu toggle
+      menuIcon.addEventListener('click', function(e){
+        e.stopPropagation();
+        navbar.classList.toggle('active');
+      });
+
+      // dropdown toggle (works on mobile: click to open; on desktop hover is CSS)
+      dropdownToggle.addEventListener('click', function(e){
+        // only toggle on narrower screens to allow desktop hover behavior
+        if (window.innerWidth <= 900) {
+          dropdownRoot.classList.toggle('open');
+        }
+      });
+
+      // close dropdown and mobile menu when clicking outside
+      document.addEventListener('click', function(e){
+        if (!dropdownRoot.contains(e.target)) {
+          dropdownRoot.classList.remove('open');
+        }
+        if (!navbar.contains(e.target) && window.innerWidth <= 900) {
+          navbar.classList.remove('active');
+        }
+      });
+
+      // rotate arrow via CSS class; handled by .open state in CSS (no extra rotation code here)
+      window.addEventListener('resize', function(){
+        // Ensure mobile-specific classes reset on resize to desktop
+        if (window.innerWidth > 900) {
+          navbar.classList.remove('active');
+          dropdownRoot.classList.remove('open');
+        }
+      });
+    })();
+
+    // Chart.js charts
+    (function(){
+      // Line chart - health report trend
+      const lineCtx = document.getElementById('lineChart').getContext('2d');
+      const lineChart = new Chart(lineCtx, {
+        type: 'line',
+        data: {
+          labels: ['Week 1','Week 2','Week 3','Week 4'],
+          datasets: [{
+            label: 'Pending Reports',
+            data: [12, 19, 8, 15],
+            borderColor: '#2b8bff',
+            backgroundColor: 'rgba(43,139,255,0.12)',
+            fill: true,
+            tension: 0.35,
+            pointRadius: 3,
+            pointBackgroundColor: '#2b8bff'
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: { legend: { display: false } },
+          scales: {
+            x: { grid: { display:false } },
+            y: { beginAtZero:true, grid: { color:'#f0f5f7' } }
+          }
+        }
+      });
+
+      // Donut chart - supplements distribution
+      const donutCtx = document.getElementById('donutChart').getContext('2d');
+      const donutChart = new Chart(donutCtx, {
+        type: 'doughnut',
+        data: {
+          labels: ['Vitamins','Minerals','Probiotics','Herbal'],
+          datasets: [{
+            data: [35, 20, 25, 20],
+            backgroundColor: ['#2b8bff','#00a79d','#f6b042','#8c6cf0'],
+            borderWidth: 0
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { position: 'bottom' }
+          },
+          cutout: '60%'
+        }
+      });
+
+      // Bar chart - patient health metrics
+      const barCtx = document.getElementById('barChart').getContext('2d');
+      const barChart = new Chart(barCtx, {
+        type: 'bar',
+        data: {
+          labels: ['Jan','Feb','Mar','Apr','May','Jun'],
+          datasets: [{
+            label: 'Score',
+            data: [65, 75, 70, 80, 78, 85],
+            backgroundColor: function(context) {
+              // gradient-like effect: return color per bar
+              const i = context.dataIndex;
+              const colors = ['#1f6dff','#1f6dff','#00a79d','#00a79d','#2b8bff','#2b8bff'];
+              return colors[i % colors.length];
+            },
+            borderRadius: 6,
+            barThickness: 18
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: { legend: { display:false } },
+          scales: {
+            x: { grid: { display:false } },
+            y: { beginAtZero:true, max:100, grid:{ color:'#f0f5f7' } }
+          }
+        }
+      });
+    })();
+  </script>
+</body>
+</html>
