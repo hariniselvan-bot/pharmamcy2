@@ -3,9 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>BMI Calculator</title>
-  <link rel="stylesheet" href="pet.css">
+  <title>Healthy Living Pharmacy</title>
+  <link rel="stylesheet" href="pet.CSS">
 </head>
+<body>
+
 <!-- ✅ HEADER START -->
 <header class="header">
   <a href="index.html" class="logo">
@@ -123,7 +125,20 @@ body {
   color: #003b3b;
 }
 .dropdown-menu li a:hover {
-  background-color: #c9eeea;
+  background-color: #ffffff;
+}
+/* Make dropdown arrow black and add animation on toggle */
+.dropdown-toggle .arrow {
+  color: #000;                /* black arrow */
+  font-size: 0.7em;           /* smaller arrow */
+  margin-left: 4px;           /* a little space from the text */
+  transition: transform 0.3s ease;
+}
+
+/* Rotate arrow when dropdown is open (desktop hover or mobile active) */
+.dropdown:hover .arrow,
+.dropdown-menu.show ~ .arrow {
+  transform: rotate(180deg);
 }
 
 /* ✅ FIND BUTTON */
@@ -191,21 +206,78 @@ body {
     padding: 5px 0;
   }
   .dropdown-menu li a {
-    color: white;
+    color: rgb(0, 0, 0);
     padding-left: 25px;
   }
-}/* Make dropdown arrow black and add animation on toggle */
-.dropdown-toggle .arrow {
-  color: #000;                /* black arrow */
-  font-size: 0.7em;           /* smaller arrow */
-  margin-left: 4px;           /* a little space from the text */
-  transition: transform 0.3s ease;
+}
+/* ✅ Product Section Layout */
+.product-section {
+  background-color: #f4fffd;
+  padding: 40px 0;
 }
 
-/* Rotate arrow when dropdown is open (desktop hover or mobile active) */
-.dropdown:hover .arrow,
-.dropdown-menu.show ~ .arrow {
-  transform: rotate(180deg);
+.product-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; /* centers last row */
+  gap: 25px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* ✅ Product Card */
+.product-card {
+  background: #a8e6df;
+  border-radius: 15px;
+  padding: 20px;
+  width: 240px;
+  text-align: center;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+  transition: 0.3s;
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
+}
+
+.product-card img {
+  width: 100%;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+.product-card h3 {
+  font-size: 1rem;
+  color: #004b4b;
+  margin-bottom: 5px;
+}
+
+.product-card p {
+  font-size: 0.9rem;
+  color: #2e5555;
+  margin-bottom: 10px;
+}
+
+.product-card .price {
+  display: block;
+  font-weight: bold;
+  color: #007777;
+  margin-bottom: 8px;
+}
+
+.add-btn {
+  display: inline-block;
+  background: #ff8a3d;
+  color: white;
+  padding: 8px 15px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.add-btn:hover {
+  background: #e6772f;
 }
 
 </style>
@@ -214,27 +286,34 @@ body {
 document.addEventListener("DOMContentLoaded", function () {
   const menuIcon = document.getElementById("menu-icon");
   const navbar = document.getElementById("navbar");
-  const arrow = document.querySelector(".arrow");
-  const dropdownMenu = document.querySelector(".dropdown-menu");
+  const dropdownToggles = document.querySelectorAll(".dropdown-toggle");
 
-  // ✅ Toggle mobile navbar
+  // Toggle mobile navbar
   menuIcon.addEventListener("click", () => {
     navbar.classList.toggle("active");
   });
 
-  // ✅ Toggle Home1 dropdown only when clicking arrow
-  arrow.addEventListener("click", (e) => {
-    e.stopPropagation();
-    e.preventDefault();
-    dropdownMenu.style.display =
-      dropdownMenu.style.display === "block" ? "none" : "block";
+  // Fix: make "Home 1" clickable while still toggling submenu
+  dropdownToggles.forEach(toggle => {
+    toggle.addEventListener("click", (e) => {
+      const dropdownMenu = toggle.nextElementSibling;
+
+      if (window.innerWidth <= 900) {
+        // Separate the arrow part from the text
+        const arrowClicked = e.offsetX > toggle.offsetWidth - 20;
+
+        if (arrowClicked) {
+          // prevent navigation and toggle submenu only if arrow area is clicked
+          e.preventDefault();
+          dropdownMenu.style.display =
+            dropdownMenu.style.display === "block" ? "none" : "block";
+        } 
+        // else → let normal link navigation happen (index.html will open)
+      }
+    });
   });
 });
 </script>
-
-
-</body>
-</html>
 
   <section class="product-section">
   <div class="product-container">
