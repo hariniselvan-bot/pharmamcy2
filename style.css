@@ -608,11 +608,17 @@ body {
   }
   .lh-card-img { height: 140px; }
 }
-
+h2 {
+  font-size: 20px;
+  color: #050505;
+  font-weight: 600;
+  letter-spacing: 1px;
+  margin-bottom: 15px;
+}
 
 h3 {
   font-size: 20px;
-  color: #fafafa;
+  color: #050505;
   font-weight: 600;
   letter-spacing: 1px;
   margin-bottom: 15px;
