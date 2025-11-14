@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>BMI Calculator</title>
+  <title>drugs</title>
   <link rel="stylesheet" href="drugs.css">
 </head>
 <!-- ✅ HEADER START -->
@@ -195,9 +195,39 @@ body {
     padding-left: 25px;
   }
 }
+@media (max-width: 900px) {
+  .menu-icon {
+    display: block;   /* ✅ Makes the hamburger appear */
+  }
+}
+.navbar {
+  display: flex;
+}
+
+@media (max-width: 900px) {
+  .navbar {
+    display: none;        /* Hidden on mobile */
+  }
+  .navbar.active {
+    display: flex;        /* Shown when hamburger is clicked */
+    flex-direction: column;
+  }
+}
+
+
 </style>
 
 <script>
+  document.addEventListener("DOMContentLoaded", function () {
+  const menuIcon = document.getElementById("menu-icon");
+  const navbar = document.getElementById("navbar");
+
+  menuIcon.addEventListener("click", () => {
+    navbar.classList.toggle("active");   // ✅ Shows menu on mobile
+  });
+});
+navbar.classList.toggle("active");
+
 document.addEventListener("DOMContentLoaded", function () {
   const menuIcon = document.getElementById("menu-icon");
   const navbar = document.getElementById("navbar");
