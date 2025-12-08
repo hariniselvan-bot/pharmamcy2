@@ -38,7 +38,7 @@
   <div class="menu-icon" id="menu-icon">&#9776;</div>
 </header>
 <!-- ✅ HEADER END -->
-
+<div class="header-space"></div>
 
 <!-- ✅ CSS -->
 <style>
@@ -54,6 +54,19 @@
   left: 0;
   width: 100%;
   z-index: 1000;
+}
+header {
+    margin-bottom: 25px;
+}
+.header-space {
+    height: 20px; /* increase for bigger gap */
+}
+body {
+    margin-top: 20px; /* adjust the value as you want */
+}
+
+header {
+    margin-bottom: 20px; /* gap below the header */
 }
 
 /* ✅ LOGO */
@@ -99,6 +112,21 @@ header .logo span {
 .dropdown {
   position: relative;
 }
+/* Drop-down (Home 2) above everything */
+.navbar .dropdown-menu {
+    position: absolute;
+    z-index: 9999 !important;
+}
+
+/* Mobile menu below dropdown */
+.mobile-menu {
+    position: fixed;
+    z-index: 999; /* lower than dropdown */
+}
+.navbar li {
+    position: relative; /* anchor for dropdown */
+}
+
 .dropdown-menu {
   display: none;
   position: absolute;
@@ -171,7 +199,6 @@ header .logo span {
     .navbar {
       display: none;
       flex-direction: column;
-      background-color: #009999;
       position: absolute;
       top: 70px;
       right: 20px;
