@@ -27,68 +27,109 @@ body{
   flex-direction: column;
   min-height: 100vh;
 }
-
-/* Header container */
+/* ===== HEADER BAR ===== */
 header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: #ede7e7;
-  padding: 10px 80px;
-  position: fixed;
   width: 100%;
+  background: #eaf7f7;           /* mint background */
+  padding: 15px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: fixed;
   top: 0;
-  z-index: 999;
-}
-
-/* Logo section */
-.logo {
-  display: flex;
-  align-items: center;
-}
-
-.logo a {
-  display: flex;
-  align-items: center;
-  text-decoration: none;
-}
-
-.logo img {
-  width: 45px;
-  height: 45px;
-  margin-right: 10px;
-  border-radius: 8px;
-}
-
-.logo h1 {
-  color: rgb(21, 21, 21);
+  left: 0;
+  z-index: 1000;
+  border-bottom: 3px solid #a855f7; /* purple underline */
   font-family: "Poppins", sans-serif;
-  font-size: 22px;
-  letter-spacing: 1px;
 }
 
-/* Navigation menu */
+/* LOGO */
+.logo {
+  font-size: 26px;
+  font-weight: 700;
+  color: #1d5c63;
+  letter-spacing: 2px;
+}
+
+/* NAVIGATION */
 nav ul {
-  list-style: none;
   display: flex;
-  gap: 40px;
+  list-style: none;
+  gap: 35px;
+  margin: 0;
+  padding: 0;
 }
 
 nav ul li a {
-  color: rgb(20, 20, 20);
   text-decoration: none;
-  font-family: "Poppins", sans-serif;
+  font-size: 17px;
   font-weight: 500;
+  color: #003e42; 
+  transition: 0.3s ease;
+}
+
+nav ul li a:hover {
+  color: #a855f7; /* purple hover */
+}
+
+/* DROPDOWN */
+nav ul li {
+  position: relative;
+}
+
+nav ul li ul {
+  position: absolute;
+  top: 30px;
+  left: 0;
+  background: #eaf7f7;   /* same mint */
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgb(0 0 0 / 10%);
+  display: none;
+}
+
+nav ul li:hover ul {
+  display: block;
+}
+
+nav ul li ul li {
+  padding: 8px 12px;
+  white-space: nowrap;
+}
+
+nav ul li ul li a {
+  font-size: 15px;
+}
+
+/* FIND A DOCTOR BUTTON */
+header .btn-find {
+  background: #009da0;
+  color: white;
+  padding: 10px 22px;
+  border-radius: 25px;
   font-size: 16px;
+  font-weight: 600;
+  text-decoration: none;
   transition: 0.3s;
 }
 
-nav ul li a:hover,
-nav ul li a.active {
-  color: #f36aff;
-  text-shadow: 0 0 8px #f36aff;
+header .btn-find:hover {
+  background: #007c7e;
 }
 
+.header-space {
+    height: 20px; /* increase for bigger gap */
+}
+body {
+    padding-top: 120px;  /* same as header height */
+}
+header {
+    height: 100px;   /* your header height */
+}
+
+body {
+    padding-top: 100px;   /* same value as header */
+}
 
 /* ---------- FLOATING MOLECULES ---------- */
 .float-wrap{position:fixed; inset:0; pointer-events:none; z-index:0}
